@@ -1,5 +1,5 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs"]
+nixPkgs = ["python311", "nodejs", "stdenv.cc.cc.lib", "gcc"]
 
 [phases.install]
 cmds = ["python -m venv /opt/venv && /opt/venv/bin/pip install -r SGA-Backend/requirements.txt"]

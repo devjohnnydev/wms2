@@ -94,6 +94,16 @@ async def tabela(db: AsyncSession = Depends(get_db)):
 
     # Organiza as datas da mais antiga a mais nova
     datas_unicas = sorted(list(set(row.data_movimentacao for row in movimentacoes_result)))
+    
+    if not datas_unicas:
+        return ChartResponse(
+            categories=produtos,
+            values=quantidade,
+            receipts=[],
+            issues=[],
+            days=[]
+        )
+
     data_minima = datas_unicas[0]
     data_maxima = datas_unicas[-1]
     dias = {}

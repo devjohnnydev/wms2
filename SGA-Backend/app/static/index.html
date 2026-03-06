@@ -12,20 +12,20 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
-    <script src="js/config.js"></script>
+    <script src="/js/config.js"></script>
 </head>
 
 <body>
 
-    <img id="bolinhacima" src="imglogineusuario/bolinhas.svg" alt="">
-    <img id="bolinhadireita" src="imglogineusuario/bolinhas.svg" alt="">
-    <img id="bolinhaesquerda" src="imglogineusuario/bolinhas.svg" alt="">
-    <img id="cima" src="imglogineusuario/caixascima.svg" alt="">
-    <img id="direita" src="imglogineusuario/caixasdireita.svg" alt="">
-    <img id="esquerda" src="imglogineusuario/caixasesquerda.svg" alt="">
-    <img id="logo" src="imglogineusuario/logosga.svg" alt="">
-    <img id="senai" src="imglogineusuario/senaibranco.svg" alt="">
-    <img id="grupo" src="imglogineusuario/logogrupo.svg" alt="">
+    <img id="bolinhacima" src="/imglogineusuario/bolinhas.svg" alt="">
+    <img id="bolinhadireita" src="/imglogineusuario/bolinhas.svg" alt="">
+    <img id="bolinhaesquerda" src="/imglogineusuario/bolinhas.svg" alt="">
+    <img id="cima" src="/imglogineusuario/caixascima.svg" alt="">
+    <img id="direita" src="/imglogineusuario/caixasdireita.svg" alt="">
+    <img id="esquerda" src="/imglogineusuario/caixasesquerda.svg" alt="">
+    <img id="logo" src="/imglogineusuario/logosga.svg" alt="">
+    <img id="senai" src="/imglogineusuario/senaibranco.svg" alt="">
+    <img id="grupo" src="/imglogineusuario/logogrupo.svg" alt="">
 
     <div class="traco"></div>
     <p id="mor">Morvan Figueiredo</p>
@@ -48,8 +48,8 @@
 
     </div>
 
-        <script>
-            
+    <script>
+
         document.getElementById('loginForm').addEventListener('submit', async (event) => {
             event.preventDefault();
 
@@ -57,33 +57,33 @@
             const senha = document.getElementById('senha').value;
 
             try {
-            const response = await fetch(`${API_BASE_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, senha }),
-            });
+                const response = await fetch(`${API_BASE_URL}/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, senha }),
+                });
 
-            const data = await response.json();
+                const data = await response.json();
 
-            if (response.ok && data.access_token) {
-                localStorage.setItem('access_token', data.access_token);
-                localStorage.setItem('usuario_email', data.email);
-                localStorage.setItem('usuario_tipo', data.tipo_usuario);
+                if (response.ok && data.access_token) {
+                    localStorage.setItem('access_token', data.access_token);
+                    localStorage.setItem('usuario_email', data.email);
+                    localStorage.setItem('usuario_tipo', data.tipo_usuario);
 
-                if (data.tipo_usuario === 'professor') {
-                    window.location.href = "telaInicial-Professor.html";
+                    if (data.tipo_usuario === 'professor') {
+                        window.location.href = "telaInicial-Professor.html";
+                    } else {
+                        window.location.href = "telaInicial.html";
+                    }
+
                 } else {
-                    window.location.href = "telaInicial.html";
+                    Swal.fire('Erro', data.detail || 'Credenciais inválidas.', 'error');
                 }
-
-            } else {
-                Swal.fire('Erro', data.detail || 'Credenciais inválidas.', 'error');
-            }
             } catch (error) {
-            Swal.fire('Erro', 'Erro ao fazer login: ' + error.message, 'error');
+                Swal.fire('Erro', 'Erro ao fazer login: ' + error.message, 'error');
             }
         });
-        </script>
+    </script>
 
 </body>
 

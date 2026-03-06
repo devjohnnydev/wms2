@@ -1,8 +1,11 @@
 [phases.setup]
-nixPkgs = ["python311", "nodejs", "stdenv.cc.cc.lib", "gcc"]
+nixPkgs = ["python311", "nodejs", "stdenv.cc.cc.lib"]
 
 [phases.install]
 cmds = ["python -m venv /opt/venv && /opt/venv/bin/pip install -r SGA-Backend/requirements.txt"]
+
+[variables]
+LD_LIBRARY_PATH = "/root/.nix-profile/lib:$LD_LIBRARY_PATH"
 
 [start]
 cmd = "bash start.sh"

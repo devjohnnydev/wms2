@@ -10,5 +10,5 @@ class FactSaida(Base):
     data_saida: Mapped[date] = mapped_column(Date, nullable=False)
     quant: Mapped[date] = mapped_column(BigInteger, nullable=False)
     lote: Mapped[str] = mapped_column(String(30), nullable=False)
-    codigo: Mapped[int] = mapped_column(Integer, nullable=False)
+    codigo: Mapped[int] = mapped_column(BigInteger, nullable=False)
     fornecedor: Mapped[str] = mapped_column(String, nullable=True)

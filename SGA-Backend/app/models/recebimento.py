@@ -10,7 +10,7 @@ class FactRecebimento(Base):
     data_receb: Mapped[date] = mapped_column(Date, nullable=False)
     quant: Mapped[int] = mapped_column(BigInteger, nullable=False)
     # codigo: Mapped[int] = mapped_column(Integer, nullable=False)
-    codigo: Mapped[int] = mapped_column(ForeignKey("dimproduto.codigo", ondelete="CASCADE"), nullable=False)
+    codigo: Mapped[int] = mapped_column(BigInteger, ForeignKey("dimproduto.codigo", ondelete="CASCADE"), nullable=False)
     validade: Mapped[date] = mapped_column(Date, nullable=True)
     preco_de_aquisicao: Mapped[float] = mapped_column(Numeric(precision=10, scale=2), nullable=False)
     lote: Mapped[str] = mapped_column(String(30), nullable=False)

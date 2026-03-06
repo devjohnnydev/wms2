@@ -16,7 +16,7 @@
 //       }
 //     }
 //   });
-  
+
 //   function toggleSection(sectionId) {
 //     var section = document.getElementById(sectionId);
 //     if (section.style.display === "none" || section.style.display === "") {
@@ -32,194 +32,194 @@ const botaoAbrir = document.getElementById('abrir');
 const botaoFechar = document.getElementById('fechar');
 
 //---Inserir dados no BD
-  document.addEventListener("DOMContentLoaded", () => {
-    const formContainer = document.getElementById("formContainer");
-    const registrationForm = document.getElementById("registrationForm");
-  
-    // Fetch fornecedores para preencher o select
-    async function fetchFornecedores() {
-      const response = await fetch("http://127.0.0.1:8000/fornecedores");
-      const fornecedores = await response.json();
-  
-      const fornecedorSelect = document.getElementById("product_font");
-      fornecedores.forEach((fornecedor) => {
-        const option = document.createElement("option");
-        option.value = fornecedor.id; // ou outro campo que represente o ID
-        option.textContent = fornecedor.nome;
-        fornecedorSelect.appendChild(option);
-      });
-    }
-  
-    // Fetch lotes para preencher o select
-    // async function fetchLotes(fornecedorId) {
-    //   const response = await fetch(`/api/lotes?fornecedor=${fornecedorId}`);
-    //   const lotes = await response.json();
-  
-    //   const loteSelect = document.getElementById("numb_lote");
-    //   loteSelect.innerHTML = '<option value="" disabled selected>Selecione o lote</option>'; // Limpa as opções
-    //   lotes.forEach((lote) => {
-    //     const option = document.createElement("option");
-    //     option.value = lote.id; // ou outro campo que represente o ID do lote
-    //     option.textContent = `Lote ${lote.id} - Estoque: ${lote.estoqueDisponivel}`;
-    //     option.setAttribute("data-quantity", lote.estoqueDisponivel);
-    //     loteSelect.appendChild(option);
-    //   });
-    // }
-  
-    const quantityHint = document.getElementById("quantity_hint");
+document.addEventListener("DOMContentLoaded", () => {
+  const formContainer = document.getElementById("formContainer");
+  const registrationForm = document.getElementById("registrationForm");
 
-    document.getElementById("product_font").addEventListener("change", (e) => {
-      fetchLotes(e.target.value);
-    });
-  
-    document.getElementById("numb_lote").addEventListener("change", function () {
-      const selectedOption = this.options[this.selectedIndex];
-      const quantidadeDisponivel = selectedOption.getAttribute("data-quantity");
-  
-      const quantidadeInput = document.getElementById("quantity_received");
-      quantidadeInput.max = quantidadeDisponivel;
-  
-      quantityHint.textContent = `Estoque disponível: ${quantidadeDisponivel}`;
-    });
-  
-    registrationForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-  
-      const data = document.getElementById("issue_date").value;
-      const quantidade = document.getElementById("quantity_received").value;
-      const codigo = document.getElementById("product_code").value;
-      const lote = document.getElementById("numb_lote").value;
-      const fornecedor = document.getElementById("product_font").value;
-  
-      const response = await fetch("http://127.0.0.1:8000/adicionar-saida", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fornecedor: fornecedor,
-          codigo: codigo,
-          quantidade: quantidade,
-          numbLote: lote,
-          data_saida: data,
-        }),
-      });
-  
-      if (response.ok) {
-        alert("Saída registrada com sucesso!");
-        registrationForm.reset();
-        fetchSaidas();
-        toggleForm();
-      } else {
-        const error = await response.json();
-        alert("Erro ao registrar saída: " + error.message);
-      }
-      
+  // Fetch fornecedores para preencher o select
+  async function fetchFornecedores() {
+    const response = await fetch(`${API_BASE_URL}/fornecedores`);
+    const fornecedores = await response.json();
 
-      quantityHint.textContent = "Estoque disponível: "; // Reseta a dica de quantidade
-    });
-  });
-  
-  // function toggleForm() {
-  //   const formContainer = document.getElementById("formContainer");
-  //   formContainer.style.display =
-  //     formContainer.style.display === "block" ? "none" : "block";
-  // }
-  //----------------------------------------------------------------------------------------------------------------------
-  document.addEventListener("DOMContentLoaded", () => {
-    const productCodeInput = document.getElementById("product_code");
     const fornecedorSelect = document.getElementById("product_font");
-    const loteSelect = document.getElementById("numb_lote");
+    fornecedores.forEach((fornecedor) => {
+      const option = document.createElement("option");
+      option.value = fornecedor.id; // ou outro campo que represente o ID
+      option.textContent = fornecedor.nome;
+      fornecedorSelect.appendChild(option);
+    });
+  }
 
-    // Quando a página carregar, verifica se já existe código do produto inserido
-    if (productCodeInput.value) {
-        fetchFornecedoresPorProduto(productCodeInput.value);
+  // Fetch lotes para preencher o select
+  // async function fetchLotes(fornecedorId) {
+  //   const response = await fetch(`/api/lotes?fornecedor=${fornecedorId}`);
+  //   const lotes = await response.json();
+
+  //   const loteSelect = document.getElementById("numb_lote");
+  //   loteSelect.innerHTML = '<option value="" disabled selected>Selecione o lote</option>'; // Limpa as opções
+  //   lotes.forEach((lote) => {
+  //     const option = document.createElement("option");
+  //     option.value = lote.id; // ou outro campo que represente o ID do lote
+  //     option.textContent = `Lote ${lote.id} - Estoque: ${lote.estoqueDisponivel}`;
+  //     option.setAttribute("data-quantity", lote.estoqueDisponivel);
+  //     loteSelect.appendChild(option);
+  //   });
+  // }
+
+  const quantityHint = document.getElementById("quantity_hint");
+
+  document.getElementById("product_font").addEventListener("change", (e) => {
+    fetchLotes(e.target.value);
+  });
+
+  document.getElementById("numb_lote").addEventListener("change", function () {
+    const selectedOption = this.options[this.selectedIndex];
+    const quantidadeDisponivel = selectedOption.getAttribute("data-quantity");
+
+    const quantidadeInput = document.getElementById("quantity_received");
+    quantidadeInput.max = quantidadeDisponivel;
+
+    quantityHint.textContent = `Estoque disponível: ${quantidadeDisponivel}`;
+  });
+
+  registrationForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const data = document.getElementById("issue_date").value;
+    const quantidade = document.getElementById("quantity_received").value;
+    const codigo = document.getElementById("product_code").value;
+    const lote = document.getElementById("numb_lote").value;
+    const fornecedor = document.getElementById("product_font").value;
+
+    const response = await fetch(`${API_BASE_URL}/adicionar-saida`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fornecedor: fornecedor,
+        codigo: codigo,
+        quantidade: quantidade,
+        numbLote: lote,
+        data_saida: data,
+      }),
+    });
+
+    if (response.ok) {
+      alert("Saída registrada com sucesso!");
+      registrationForm.reset();
+      fetchSaidas();
+      toggleForm();
+    } else {
+      const error = await response.json();
+      alert("Erro ao registrar saída: " + error.message);
     }
 
-    // Quando o código do produto for alterado
-    productCodeInput.addEventListener("change", (e) => {
-        const codigoProduto = e.target.value;
-        fetchFornecedoresPorProduto(codigoProduto);
-    });
 
-    // Quando o fornecedor for alterado
-    fornecedorSelect.addEventListener("change", () => {
-        const fornecedorId = fornecedorSelect.value;
-        const codigoProduto = productCodeInput.value;
-        if (fornecedorId && codigoProduto) {
-            fetchLotes(fornecedorId, codigoProduto);
-        }
-    });
+    quantityHint.textContent = "Estoque disponível: "; // Reseta a dica de quantidade
+  });
+});
 
-    // Quando o lote for alterado, ajusta a quantidade máxima
-    loteSelect.addEventListener("change", function () {
-        const selectedOption = this.options[this.selectedIndex];
-        const quantidadeDisponivel = selectedOption.getAttribute("data-quantity");
+// function toggleForm() {
+//   const formContainer = document.getElementById("formContainer");
+//   formContainer.style.display =
+//     formContainer.style.display === "block" ? "none" : "block";
+// }
+//----------------------------------------------------------------------------------------------------------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const productCodeInput = document.getElementById("product_code");
+  const fornecedorSelect = document.getElementById("product_font");
+  const loteSelect = document.getElementById("numb_lote");
 
-        const quantidadeInput = document.getElementById("quantity_received");
-        quantidadeInput.max = quantidadeDisponivel;
+  // Quando a página carregar, verifica se já existe código do produto inserido
+  if (productCodeInput.value) {
+    fetchFornecedoresPorProduto(productCodeInput.value);
+  }
 
-        const quantityHint = document.getElementById("quantity_hint");
-        quantityHint.textContent = `Estoque disponível: ${quantidadeDisponivel}`;
-    });
+  // Quando o código do produto for alterado
+  productCodeInput.addEventListener("change", (e) => {
+    const codigoProduto = e.target.value;
+    fetchFornecedoresPorProduto(codigoProduto);
+  });
+
+  // Quando o fornecedor for alterado
+  fornecedorSelect.addEventListener("change", () => {
+    const fornecedorId = fornecedorSelect.value;
+    const codigoProduto = productCodeInput.value;
+    if (fornecedorId && codigoProduto) {
+      fetchLotes(fornecedorId, codigoProduto);
+    }
+  });
+
+  // Quando o lote for alterado, ajusta a quantidade máxima
+  loteSelect.addEventListener("change", function () {
+    const selectedOption = this.options[this.selectedIndex];
+    const quantidadeDisponivel = selectedOption.getAttribute("data-quantity");
+
+    const quantidadeInput = document.getElementById("quantity_received");
+    quantidadeInput.max = quantidadeDisponivel;
+
+    const quantityHint = document.getElementById("quantity_hint");
+    quantityHint.textContent = `Estoque disponível: ${quantidadeDisponivel}`;
+  });
 });
 
 // Função para buscar fornecedores para um produto específico
 async function fetchFornecedoresPorProduto(codigo) {
-    try {
-        const response = await fetch(`http://127.0.0.1:8000/fornecedores/${codigo}`);
+  try {
+    const response = await fetch(`${API_BASE_URL}/fornecedores/${codigo}`);
 
-        if (!response.ok) {
-          if (response.status == 400) {
-            throw new Error('Fornecedores não encontrados, verifique se o código existe.')
-          } else if (response.status == 500) {
-            throw new Error(response.statusText)
-          }          
-        }
-        
-        const fornecedores_data = await response.json();
-        const fornecedores = fornecedores_data.dados
-
-        const fornecedorSelect = document.getElementById("product_font");
-        fornecedorSelect.innerHTML = '<option value="" disabled selected>Selecione o fornecedor</option>';
-
-        fornecedores.forEach(fornecedor => {
-            const option = document.createElement("option");
-            option.value = fornecedor.id;
-            option.textContent = fornecedor.nome;
-            fornecedorSelect.appendChild(option);
-        });
-    } catch (error) {
-        console.error("Erro ao buscar fornecedores:", error);
-        alert(`Erro ao carregar fornecedores: ${error.message}`);
+    if (!response.ok) {
+      if (response.status == 400) {
+        throw new Error('Fornecedores não encontrados, verifique se o código existe.')
+      } else if (response.status == 500) {
+        throw new Error(response.statusText)
+      }
     }
+
+    const fornecedores_data = await response.json();
+    const fornecedores = fornecedores_data.dados
+
+    const fornecedorSelect = document.getElementById("product_font");
+    fornecedorSelect.innerHTML = '<option value="" disabled selected>Selecione o fornecedor</option>';
+
+    fornecedores.forEach(fornecedor => {
+      const option = document.createElement("option");
+      option.value = fornecedor.id;
+      option.textContent = fornecedor.nome;
+      fornecedorSelect.appendChild(option);
+    });
+  } catch (error) {
+    console.error("Erro ao buscar fornecedores:", error);
+    alert(`Erro ao carregar fornecedores: ${error.message}`);
+  }
 }
 
 // Função para buscar os lotes de um fornecedor e produto específico
 async function fetchLotes(fornecedorId, codigo) {
-    try {
-        const response = await fetch(`http://127.0.0.1:8000/lotes?fornecedor=${fornecedorId}&codigo=${codigo}`);
-        const lotes_response = await response.json(); // Modificado por causa do pydantic
-        const lotes = lotes_response.dados
+  try {
+    const response = await fetch(`${API_BASE_URL}/lotes?fornecedor=${fornecedorId}&codigo=${codigo}`);
+    const lotes_response = await response.json(); // Modificado por causa do pydantic
+    const lotes = lotes_response.dados
 
-        const loteSelect = document.getElementById("numb_lote");
-        loteSelect.innerHTML = '<option value="" disabled selected>Selecione o lote</option>';
+    const loteSelect = document.getElementById("numb_lote");
+    loteSelect.innerHTML = '<option value="" disabled selected>Selecione o lote</option>';
 
-        if (lotes) {
-          lotes.forEach(lote => {
-              const option = document.createElement("option");
-              option.value = lote.id;
-              option.textContent = `Lote ${lote.id} - Estoque: ${lote.estoqueDisponivel}`;
-              option.setAttribute("data-quantity", lote.estoqueDisponivel);
-              loteSelect.appendChild(option);
-          });
-        }
-    } catch (error) {
-        console.error("Erro ao buscar lotes:", error);
-        alert("Erro ao carregar lotes. Verifique sua conexão com o servidor.");
+    if (lotes) {
+      lotes.forEach(lote => {
+        const option = document.createElement("option");
+        option.value = lote.id;
+        option.textContent = `Lote ${lote.id} - Estoque: ${lote.estoqueDisponivel}`;
+        option.setAttribute("data-quantity", lote.estoqueDisponivel);
+        loteSelect.appendChild(option);
+      });
     }
+  } catch (error) {
+    console.error("Erro ao buscar lotes:", error);
+    alert("Erro ao carregar lotes. Verifique sua conexão com o servidor.");
+  }
 }
-  
+
 //--------------------------------------------------------------Aparecer os recebimentos na tela
 // arrays que serão preenchidas com os dados recebidos
 let saidas = []
@@ -229,7 +229,7 @@ let fabricantes = []
 
 async function fetchSaidas(event = null, num = 0) {
   try {
-    saidaUrl = num ? `http://127.0.0.1:8000/saidas/${num}` : 'http://127.0.0.1:8000/saidas';
+    saidaUrl = num ? `${API_BASE_URL}/saidas/${num}` : `${API_BASE_URL}/saidas`;
 
     const response = await fetch(saidaUrl);
 
@@ -282,7 +282,7 @@ async function fetchSaidas(event = null, num = 0) {
       option.textContent = fornecedor;
       fornecedorSelect.appendChild(option);
     });
-    
+
     montarTabela();
 
   } catch (error) {
@@ -325,7 +325,7 @@ function montarTabela() {
   } else if (tabelaOpts.sort === 'za') {
     tabelaData.sort((a, b) => b.nome_basico.localeCompare(a.nome_basico)); // inverte a array
   };
-  
+
 
   tabelaData.forEach((saida, index) => {
     // filtra os itens caso necessário
@@ -345,7 +345,7 @@ function montarTabela() {
     if (
       tabelaOpts.datas.length > 0 &&
       (tabelaOpts.datas[0] > parseDataBr(saida.data_saida) ||
-      tabelaOpts.datas[1] < parseDataBr(saida.data_saida))
+        tabelaOpts.datas[1] < parseDataBr(saida.data_saida))
     ) {
       return;
     };
@@ -401,15 +401,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //mostrar ou esconder o caixote
   filtrarButton.addEventListener("click", (event) => {
-      caixote.classList.toggle("active");
-      event.stopPropagation(); // impede que o click no filtro feche o dropdown
+    caixote.classList.toggle("active");
+    event.stopPropagation(); // impede que o click no filtro feche o dropdown
   });
 
   // Fecha o caixote se clicar fora dele
   document.addEventListener("click", (event) => {
-      if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
-          caixote.classList.remove("active");
-      }
+    if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
+      caixote.classList.remove("active");
+    }
   });
 });
 
@@ -433,7 +433,7 @@ categoriaSelect.addEventListener("change", () => {
 });
 
 fabricanteSelect.addEventListener("change", () => {
-  if (fabricanteSelect.selectedIndex !== 0){
+  if (fabricanteSelect.selectedIndex !== 0) {
     tabelaOpts.fabricante = fabricanteSelect.value;
   } else { // se selecionar a primeira opção
     tabelaOpts.fabricante = ''; // reseta o valor
@@ -442,7 +442,7 @@ fabricanteSelect.addEventListener("change", () => {
 });
 
 fornecedorSelect.addEventListener("change", () => {
-  if (fornecedorSelect.selectedIndex !== 0){
+  if (fornecedorSelect.selectedIndex !== 0) {
     tabelaOpts.fornecedor = fornecedorSelect.value;
   } else { // se selecionar a primeira opção
     tabelaOpts.fornecedor = ''; // reseta o valor

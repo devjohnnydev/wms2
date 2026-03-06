@@ -21,9 +21,9 @@ document.addEventListener("DOMContentLoaded", () => {
 produtos = []
 
 const tabelaOpts = {
-  categoria: '',
-  fabricante: '',
-  ordenacao: ''
+    categoria: '',
+    fabricante: '',
+    ordenacao: ''
 };
 
 document.getElementById('foto').addEventListener('change', function (event) {
@@ -72,7 +72,7 @@ function limparCamposLote() {
     checkboxValidade.disabled = true;
 }
 
-document.addEventListener('click', async function(e) {
+document.addEventListener('click', async function (e) {
     const popupEdicao = document.querySelector('.popup-edicao');
     const content = document.querySelector('.popup-edicao .conteudo');
 
@@ -90,10 +90,10 @@ document.addEventListener('click', async function(e) {
             alert("Código do produto não encontrado.");
             return;
         }
-        
-// -------- PRODUTO
+
+        // -------- PRODUTO
         try {
-            const response = await fetch(`http://127.0.0.1:8000/ver_edicao/${codigo}`);
+            const response = await fetch(`${API_BASE_URL}/ver_edicao/${codigo}`);
             if (!response.ok) throw new Error("Erro ao carregar produto");
 
             const p = await response.json();
@@ -143,9 +143,9 @@ document.addEventListener('click', async function(e) {
             alert("Erro ao carregar produto.");
             return;
         }
-// -------- LOTES 
+        // -------- LOTES 
         try {
-            const responseLotes = await fetch(`http://127.0.0.1:8000/ver_edicao/${codigo}/lotes`);
+            const responseLotes = await fetch(`${API_BASE_URL}/ver_edicao/${codigo}/lotes`);
             if (!responseLotes.ok) throw new Error("Erro ao carregar lotes");
 
             const lotes = await responseLotes.json();
@@ -167,7 +167,7 @@ document.addEventListener('click', async function(e) {
                     return;
                 }
 
-                const res = await fetch(`http://127.0.0.1:8000/ver_edicao/${codigo}/lotes/${loteProd}`);
+                const res = await fetch(`${API_BASE_URL}/ver_edicao/${codigo}/lotes/${loteProd}`);
                 if (!res.ok) {
                     alert("Erro ao carregar lote");
                     return;
@@ -233,7 +233,7 @@ document.querySelector('.salvar_edicao').addEventListener('click', async functio
     formData.append("categorias", categoriasSelecionadas.join(","));
 
     try {
-        const response = await fetch(`http://127.0.0.1:8000/editar_produto/${codigo}`, {
+        const response = await fetch(`${API_BASE_URL}/editar_produto/${codigo}`, {
             method: "PATCH",
             body: formData
         });
@@ -253,7 +253,7 @@ document.querySelector('.salvar_edicao').addEventListener('click', async functio
 
             formDataLote.append("fornecedor", inputFornecedor.value.trim());
 
-            responseLote = await fetch(`http://127.0.0.1:8000/editar_lote/${codigo}/lotes/${lote}`, {
+            responseLote = await fetch(`${API_BASE_URL}/editar_lote/${codigo}/lotes/${lote}`, {
                 method: "PATCH",
                 body: formDataLote
             });
@@ -278,11 +278,11 @@ document.querySelector('.salvar_edicao').addEventListener('click', async functio
 
 // <!-- -------------------------------------Mostrar a Tabela----------------------------------------------------------- -->
 
-let API_URL = "http://127.0.0.1:8000/ver_edicao" 
+let API_URL_EDICAO = `${API_BASE_URL}/ver_edicao`
 
 async function fetchProdutosCatalogo() {
     try {
-        const response = await fetch(API_URL);
+        const response = await fetch(API_URL_EDICAO);
 
         if (!response.ok) {
             throw new Error('Erro ao buscar produtos: ' + response.statusText);
@@ -297,7 +297,7 @@ async function fetchProdutosCatalogo() {
     }
 }
 
-function montarTabela(lista = produtos){
+function montarTabela(lista = produtos) {
     const tbody = document.querySelector('#tabela-estoque tbody');
     tbody.innerHTML = '';
 
@@ -368,7 +368,7 @@ function preencherSelects(lista) {
     const selectCategoria = document.getElementById("categoria");
     selectCategoria.innerHTML = '<option value="">Todas</option>';
 
-    const categorias = [...new Set(lista.flatMap(p => 
+    const categorias = [...new Set(lista.flatMap(p =>
         p.categorias ? p.categorias.split(", ") : []
     ))].filter(c => c);
 
@@ -396,7 +396,7 @@ function verificarSenha() {
         return;
     }
 
-    fetch(`http://127.0.0.1:8000/deletar_produto/${codigo_deletar}`, {
+    fetch(`${API_BASE_URL}/deletar_produto/${codigo_deletar}`, {
         method: 'DELETE'
     })
         .then(response => {
@@ -405,13 +405,13 @@ function verificarSenha() {
             }
             return response.text();
         })
-        .then(message => {  
+        .then(message => {
             console.log(`${message}, DELETADO COM SUCESSO`);
             fetchProdutosCatalogo();
             if (message.includes('sucesso')) {
                 document.querySelector(`#produto-${codigo_deletar}`).remove();
                 fetchProdutosCatalogo();
-            } 
+            }
         })
         .catch(error => {
             console.error('Erro:', error);
@@ -428,30 +428,30 @@ function cancelarSenha() {
 }
 
 document.getElementById('ordenacao').addEventListener('change', e => {
-  tabelaOpts.ordenacao = e.target.value;
-  montarTabela();
+    tabelaOpts.ordenacao = e.target.value;
+    montarTabela();
 });
 
 document.getElementById('fabricante-filtro').addEventListener('change', e => {
-  tabelaOpts.fabricante = e.target.value;
-  montarTabela(produtos)
+    tabelaOpts.fabricante = e.target.value;
+    montarTabela(produtos)
 });
 
 document.getElementById('categoria').addEventListener('change', e => {
-  tabelaOpts.categoria = e.target.value;
-  montarTabela();
+    tabelaOpts.categoria = e.target.value;
+    montarTabela();
 });
 
 //---------------------LIMPAR FILTRO
 
 function limparFiltros() {
-  tabelaOpts.categoria = '';
-  tabelaOpts.fabricante = '';
-  tabelaOpts.ordenacao = '';
-  document.getElementById('categoria').value = '';
-  document.getElementById('fabricante-filtro').value = '';
-  document.getElementById('ordenacao').value = '';
-  montarTabela();
+    tabelaOpts.categoria = '';
+    tabelaOpts.fabricante = '';
+    tabelaOpts.ordenacao = '';
+    document.getElementById('categoria').value = '';
+    document.getElementById('fabricante-filtro').value = '';
+    document.getElementById('ordenacao').value = '';
+    montarTabela();
 }
 
 

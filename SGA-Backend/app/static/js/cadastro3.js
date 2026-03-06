@@ -1,6 +1,6 @@
 async function SelectCategorias() {
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/ver_categorias');
+        const response = await fetch(`${API_BASE_URL}/ver_categorias`);
 
         if (!response.ok) {
             throw new Error('Erro ao buscar categorias: ' + response.statusText);

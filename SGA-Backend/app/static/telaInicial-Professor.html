@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,57 +8,59 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Adicionando SweetAlert -->
     <link rel="stylesheet" href="css/telaInicial-Professor.css">
+    <script src="js/config.js"></script>
 </head>
+
 <body>
-    <div class="navbar">  
+    <div class="navbar">
         <img src="imagens/SENAI_logo.png" alt="Logo do senai" id="logo_senai">
         <a href="adicionarUsuario.html" id="adicionarUsuario">Adicionar usuário</a>
         <img src="imagens/icon_sair.png" alt="icone de sair" id="logoutButton">
     </div>
-<section class="main-content">
-    <div class="container-grafico">
-        <h2 id="titulo-grafico"></h2>
-        <div id="chart" ></div> 
-        <button id="Alternar" onclick="trocarGrafico(selectedIndex + 1)"><span>Alternar Gráfico</span></button>
-    </div>
-<div class="button-container">
-    <div class="button green" id="botaoCadastro" onclick="redirecionarCadastro()">
-        <img src="imagens/Vector (1).svg" alt="">
-        <div class="texto">
-            <p>Cadastro</p>
-            <small>Cadastrar Novo Item</small>
+    <section class="main-content">
+        <div class="container-grafico">
+            <h2 id="titulo-grafico"></h2>
+            <div id="chart"></div>
+            <button id="Alternar" onclick="trocarGrafico(selectedIndex + 1)"><span>Alternar Gráfico</span></button>
         </div>
-    </div>
-    <div class="button red" onclick="redirecionarEdicao()">
-        <img src="imagens/Vector.svg" alt="">
-        <div class="texto">
-            <p>Edição</p>
-            <small>Editar/Excluir Itens</small>
-        </div>
-    </div>
+        <div class="button-container">
+            <div class="button green" id="botaoCadastro" onclick="redirecionarCadastro()">
+                <img src="imagens/Vector (1).svg" alt="">
+                <div class="texto">
+                    <p>Cadastro</p>
+                    <small>Cadastrar Novo Item</small>
+                </div>
+            </div>
+            <div class="button red" onclick="redirecionarEdicao()">
+                <img src="imagens/Vector.svg" alt="">
+                <div class="texto">
+                    <p>Edição</p>
+                    <small>Editar/Excluir Itens</small>
+                </div>
+            </div>
 
-    <div class="button blue" id="botaoEstoque" onclick="redirecionarEstoque()">
-        <img src="imagens/vaadin_storage.svg" alt="">
-        <div class="texto">
-            <p>Estoque</p>
-            <small>WMS</small>
-        </div>
-    </div>
-    <div class="dropdown-content" id="estoqueDropdown" style="display: none;">
-        <a href="catalogo.html">• Catálogo</a>
-        <a href="estoque_real.html">• Estoque Real e Inventário</a>
-        <a href="layout.html">• Layout do Estoque</a>
-    </div>
+            <div class="button blue" id="botaoEstoque" onclick="redirecionarEstoque()">
+                <img src="imagens/vaadin_storage.svg" alt="">
+                <div class="texto">
+                    <p>Estoque</p>
+                    <small>WMS</small>
+                </div>
+            </div>
+            <div class="dropdown-content" id="estoqueDropdown" style="display: none;">
+                <a href="catalogo.html">• Catálogo</a>
+                <a href="estoque_real.html">• Estoque Real e Inventário</a>
+                <a href="layout.html">• Layout do Estoque</a>
+            </div>
 
-    <div class="button yellow" onclick="redirecionarFinanceiro()">
-        <img src="imagens/ic_outline-attach-money.svg" alt="">
-        <div class="texto">
-            <p>Financeiro</p>
-            <small>Movimentações</small>
+            <div class="button yellow" onclick="redirecionarFinanceiro()">
+                <img src="imagens/ic_outline-attach-money.svg" alt="">
+                <div class="texto">
+                    <p>Financeiro</p>
+                    <small>Movimentações</small>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-</section>
+    </section>
 
 </body>
 <script>
@@ -93,7 +96,7 @@
                         Swal.fire('Logout realizado com sucesso!', '', 'success');
                         localStorage.removeItem('usuarioLogado');
                         document.getElementById('logoutButton').style.display = 'none';
-                        window.location.href = "index.html"; 
+                        window.location.href = "index.html";
                     } else {
                         const errorMessage = response.statusText || "Erro ao fazer logout.";
                         Swal.fire('Erro', errorMessage, 'error');
@@ -117,7 +120,7 @@
 
     // Redireciona para respectiva tela 
     function redirecionarFinanceiro() {
-        window.location.href = "financeiro.html"; 
+        window.location.href = "financeiro.html";
     }
     function redirecionarCadastro() {
         window.location.href = "/cadastro/cadastro1";
@@ -189,154 +192,155 @@
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-        let chart; // Variável global para armazenar o gráfico
-        const colors = ['#FF4560', '#008FFB', '#00E396', '#FEB019', '#775DD0', '#546E7A', '#26A69A', '#D10CE8'];
+    let chart; // Variável global para armazenar o gráfico
+    const colors = ['#FF4560', '#008FFB', '#00E396', '#FEB019', '#775DD0', '#546E7A', '#26A69A', '#D10CE8'];
 
-        // Configurações para o gráfico
-        const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
-        let selectedIndex = 0;
+    // Configurações para o gráfico
+    const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    let selectedIndex = 0;
 
-        // Função para buscar dados da API
-        async function fetchData() {
-            try {
-                const response = await fetch('http://127.0.0.1:8000/telaInicial');
-                const data = await response.json();
-                return data;
-            } catch (error) {
-                console.error('Erro ao buscar dados:', error);
-                return { categories: [], values: [] };
-            }
+    // Função para buscar dados da API
+    async function fetchData() {
+        try {
+            const response = await fetch(`${API_BASE_URL}/telaInicial`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Erro ao buscar dados:', error);
+            return { categories: [], values: [] };
         }
+    }
 
-        // Função para renderizar o gráfico
-        async function renderChart() {
-            const data = await fetchData();
+    // Função para renderizar o gráfico
+    async function renderChart() {
+        const data = await fetchData();
 
-            // arruma os dias para o sistema brasileiro
-            const days = [];
-            data.days.forEach(dia => {
-                const diaBr = new Date(dia)
-                days.push(diaBr.toLocaleDateString('pt-BR'));
-            });
+        // arruma os dias para o sistema brasileiro
+        const days = [];
+        data.days.forEach(dia => {
+            const diaBr = new Date(dia)
+            days.push(diaBr.toLocaleDateString('pt-BR'));
+        });
 
-            // ------------------- Agrupar por mês -----------------------------
-            let lastMonth = -1; // variável para checar os meses
-            let ind = -1; // indice das arrays mensais
-            const dataMensal = {
-                issues: [],
-                receipts: []
-            }; 
-            const monthsData = [];
-            data.days.forEach((day, index) => {
-                const month = new Date(day).getMonth();
-                const year = new Date(day).getFullYear();
-                // organiza os meses
-                if(!monthsData.includes(meses[month]+"-"+year)) monthsData.push(meses[month]+"-"+year);
-                
-                // organiza as movimentações mensais
-                const issue = parseInt(data.issues[index]); 
-                const receipt = parseInt(data.receipts[index]);
-
-                if(lastMonth != month) {
-                    dataMensal.issues.push(issue);
-                    dataMensal.receipts.push(receipt);
-                    lastMonth = month;
-                    ind += 1;
-                } else {
-                    dataMensal.issues[ind] += issue;
-                    dataMensal.receipts[ind] += receipt;
-                }
-            });
-
-            // ------------------ Organiza as opções do gráfico ---------------------
-            const daysLength = days.length; 
-            const optionsType = [
-                { // Barras
-                    series: [{ data: data.values }],
-                    chart: { height: 350, type: 'bar' },
-                    colors: colors,
-                    plotOptions: {
-                        bar: { columnWidth: '45%', distributed: true }
-                    },
-                    dataLabels: { enabled: false },
-                    legend: { show: false },
-                    xaxis: {
-                        categories: data.categories,
-                        labels: {
-                            style: { colors: colors, fontSize: '12px' }
-                        }
-                    }
-                },
-                { // Diário (Apenas os últimos 30 dias)
-                    series: [
-                        { name: 'Saída', data: data.issues.slice(daysLength - 30, daysLength) },
-                        { name: 'Recebimento', data: data.receipts.slice(daysLength - 30, daysLength) }
-                    ],
-                    chart: { height: 350, type: 'area' },
-                    stroke: { curve: 'smooth' },
-                    xaxis: {
-                        type: 'category',
-                        categories: days.slice(daysLength - 30, daysLength),
-                        labels: {
-                            format: 'dd/MM/yyyy',
-                            style: {
-                                colors: colors,
-                                fontSize: '12px'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        x: {
-                            format: 'dd/MM/yyyy'
-                        }
-                    }
-                },
-                { // Mensal
-                    series: [
-                        { name: 'Saída', data: dataMensal.issues },
-                        { name: 'Recebimento', data: dataMensal.receipts }
-                    ],
-                    chart: { height: 350, type: 'area' },
-                    stroke: { curve: 'smooth' },
-                    xaxis: {
-                        type: 'category',
-                        categories: monthsData,
-                        labels: {
-                            format: 'dd/MM/yyyy',
-                            style: {
-                                colors: colors,
-                                fontSize: '12px'
-                            }
-                        }
-                    },
-                    tooltip: {
-                        x: {
-                            format: 'dd/MM/yyyy'
-                        }
-                    }
-                }
-            ];
-              
-            const options = optionsType[selectedIndex];
-            
-            // Atualiza o título do gráfico
-            const titles = ['Gráfico de barras', 'Gráfico diário', 'Gráfico mensal'];
-            document.getElementById('titulo-grafico').innerText = titles[selectedIndex];
-
-            if (chart) chart.destroy(); // Destroi o gráfico anterior
-            chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+        // ------------------- Agrupar por mês -----------------------------
+        let lastMonth = -1; // variável para checar os meses
+        let ind = -1; // indice das arrays mensais
+        const dataMensal = {
+            issues: [],
+            receipts: []
         };
+        const monthsData = [];
+        data.days.forEach((day, index) => {
+            const month = new Date(day).getMonth();
+            const year = new Date(day).getFullYear();
+            // organiza os meses
+            if (!monthsData.includes(meses[month] + "-" + year)) monthsData.push(meses[month] + "-" + year);
 
-        // Alternar entre os gráficos
-        let counter = 0; // variável que define o tipo do gráfico
-        function trocarGrafico(novoIndex) {
-            selectedIndex = novoIndex % 3; // garante que o índice fique entre 0 e 2
-            renderChart();
+            // organiza as movimentações mensais
+            const issue = parseInt(data.issues[index]);
+            const receipt = parseInt(data.receipts[index]);
 
-        }
+            if (lastMonth != month) {
+                dataMensal.issues.push(issue);
+                dataMensal.receipts.push(receipt);
+                lastMonth = month;
+                ind += 1;
+            } else {
+                dataMensal.issues[ind] += issue;
+                dataMensal.receipts[ind] += receipt;
+            }
+        });
 
-        // Renderizar o gráfico inicial (barras)
+        // ------------------ Organiza as opções do gráfico ---------------------
+        const daysLength = days.length;
+        const optionsType = [
+            { // Barras
+                series: [{ data: data.values }],
+                chart: { height: 350, type: 'bar' },
+                colors: colors,
+                plotOptions: {
+                    bar: { columnWidth: '45%', distributed: true }
+                },
+                dataLabels: { enabled: false },
+                legend: { show: false },
+                xaxis: {
+                    categories: data.categories,
+                    labels: {
+                        style: { colors: colors, fontSize: '12px' }
+                    }
+                }
+            },
+            { // Diário (Apenas os últimos 30 dias)
+                series: [
+                    { name: 'Saída', data: data.issues.slice(daysLength - 30, daysLength) },
+                    { name: 'Recebimento', data: data.receipts.slice(daysLength - 30, daysLength) }
+                ],
+                chart: { height: 350, type: 'area' },
+                stroke: { curve: 'smooth' },
+                xaxis: {
+                    type: 'category',
+                    categories: days.slice(daysLength - 30, daysLength),
+                    labels: {
+                        format: 'dd/MM/yyyy',
+                        style: {
+                            colors: colors,
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd/MM/yyyy'
+                    }
+                }
+            },
+            { // Mensal
+                series: [
+                    { name: 'Saída', data: dataMensal.issues },
+                    { name: 'Recebimento', data: dataMensal.receipts }
+                ],
+                chart: { height: 350, type: 'area' },
+                stroke: { curve: 'smooth' },
+                xaxis: {
+                    type: 'category',
+                    categories: monthsData,
+                    labels: {
+                        format: 'dd/MM/yyyy',
+                        style: {
+                            colors: colors,
+                            fontSize: '12px'
+                        }
+                    }
+                },
+                tooltip: {
+                    x: {
+                        format: 'dd/MM/yyyy'
+                    }
+                }
+            }
+        ];
+
+        const options = optionsType[selectedIndex];
+
+        // Atualiza o título do gráfico
+        const titles = ['Gráfico de barras', 'Gráfico diário', 'Gráfico mensal'];
+        document.getElementById('titulo-grafico').innerText = titles[selectedIndex];
+
+        if (chart) chart.destroy(); // Destroi o gráfico anterior
+        chart = new ApexCharts(document.querySelector("#chart"), options);
+        chart.render();
+    };
+
+    // Alternar entre os gráficos
+    let counter = 0; // variável que define o tipo do gráfico
+    function trocarGrafico(novoIndex) {
+        selectedIndex = novoIndex % 3; // garante que o índice fique entre 0 e 2
         renderChart();
-    </script>
+
+    }
+
+    // Renderizar o gráfico inicial (barras)
+    renderChart();
+</script>
+
 </html>

@@ -6,9 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet" />
   <link rel="stylesheet" href="css/cadastro5.css" />
   <link rel="stylesheet" href="css/navbar.css" />
+  <script src="js/config.js"></script>
   <title>SGA - Cadastro</title>
 </head>
 
@@ -113,79 +115,79 @@
 
   <script src="js/navbar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script>
-  document.getElementById("form-etapa5").addEventListener("submit", async function (e) {
-    e.preventDefault();
+  <script>
+    document.getElementById("form-etapa5").addEventListener("submit", async function (e) {
+      e.preventDefault();
 
-    const dados = JSON.parse(localStorage.getItem("cadastro_produto")) || {};
-    const imagemInput = document.getElementById("image-input");
-    const observacao = document.getElementById("observacao").value;
+      const dados = JSON.parse(localStorage.getItem("cadastro_produto")) || {};
+      const imagemInput = document.getElementById("image-input");
+      const observacao = document.getElementById("observacao").value;
 
-    const formData = new FormData();
+      const formData = new FormData();
 
-    try {
-      formData.append("codigo", parseInt(dados.codigo));
-      formData.append("nome_basico", dados.nome_basico);
-      formData.append("nome_modificador", dados.nome_modificador);
-      formData.append("descricao_tecnica", dados.descricao_tecnica || "");
-      formData.append("fabricante", dados.fabricante || "");
-      formData.append("unidade", dados.unidade || "");
-      formData.append("preco_de_venda", parseFloat(dados.preco_de_venda));
-      formData.append("fragilidade", String(dados.fragilidade)); // "true" ou "false"
-      formData.append("rua", parseInt(dados.rua));
-      formData.append("coluna", parseInt(dados.coluna));
-      formData.append("andar", parseInt(dados.andar));
-      formData.append("altura", parseFloat(dados.altura));
-      formData.append("largura", parseFloat(dados.largura));
-      formData.append("profundidade", parseFloat(dados.profundidade));
-      formData.append("peso", parseFloat(dados.peso));
-      formData.append("observacoes_adicional", observacao);
-      formData.append("inserido_por", localStorage.getItem("usuario_email"));
-      formData.append("categorias", dados.categorias.join(","));
+      try {
+        formData.append("codigo", parseInt(dados.codigo));
+        formData.append("nome_basico", dados.nome_basico);
+        formData.append("nome_modificador", dados.nome_modificador);
+        formData.append("descricao_tecnica", dados.descricao_tecnica || "");
+        formData.append("fabricante", dados.fabricante || "");
+        formData.append("unidade", dados.unidade || "");
+        formData.append("preco_de_venda", parseFloat(dados.preco_de_venda));
+        formData.append("fragilidade", String(dados.fragilidade)); // "true" ou "false"
+        formData.append("rua", parseInt(dados.rua));
+        formData.append("coluna", parseInt(dados.coluna));
+        formData.append("andar", parseInt(dados.andar));
+        formData.append("altura", parseFloat(dados.altura));
+        formData.append("largura", parseFloat(dados.largura));
+        formData.append("profundidade", parseFloat(dados.profundidade));
+        formData.append("peso", parseFloat(dados.peso));
+        formData.append("observacoes_adicional", observacao);
+        formData.append("inserido_por", localStorage.getItem("usuario_email"));
+        formData.append("categorias", dados.categorias.join(","));
 
-      if (imagemInput.files[0]) {
-        formData.append("imagem", imagemInput.files[0]);
-      }
+        if (imagemInput.files[0]) {
+          formData.append("imagem", imagemInput.files[0]);
+        }
 
-      console.log("FormData enviado:");
-      for (const [key, value] of formData.entries()) {
-        console.log(`${key}:`, value);
-      }
+        console.log("FormData enviado:");
+        for (const [key, value] of formData.entries()) {
+          console.log(`${key}:`, value);
+        }
 
-      const response = await fetch("http://127.0.0.1:8000/api/produtos", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        Swal.fire({
-          icon: "success",
-          title: "Produto cadastrado com sucesso!",
-          showConfirmButton: false,
-          timer: 1500,
-        }).then(() => {
-          localStorage.removeItem("cadastro_produto");
-          location.href = "telaInicial.html";
+        const response = await fetch(`${API_BASE_URL}/produtos`, {
+          method: "POST",
+          body: formData,
         });
-      } else {
+
+        const result = await response.json();
+
+        if (response.ok) {
+          Swal.fire({
+            icon: "success",
+            title: "Produto cadastrado com sucesso!",
+            showConfirmButton: false,
+            timer: 1500,
+          }).then(() => {
+            localStorage.removeItem("cadastro_produto");
+            location.href = "telaInicial.html";
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Erro ao cadastrar",
+            text: result.detail || "Erro desconhecido.",
+          });
+        }
+      } catch (error) {
+        console.error("Erro:", error);
         Swal.fire({
           icon: "error",
-          title: "Erro ao cadastrar",
-          text: result.detail || "Erro desconhecido.",
+          title: "Erro",
+          text: "Erro ao enviar o formulário.",
         });
       }
-    } catch (error) {
-      console.error("Erro:", error);
-      Swal.fire({
-        icon: "error",
-        title: "Erro",
-        text: "Erro ao enviar o formulário.",
-      });
-    }
-  });
-</script>
+    });
+  </script>
 
 </body>
 

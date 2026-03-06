@@ -14,6 +14,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
     rel="stylesheet">
+  <script src="js/config.js"></script>
 
 </head>
 
@@ -99,50 +100,50 @@
 
     <dialog id="formDialog">
       <div id="formContainer">
-      <h2>Novo Recebimento</h2>
-      <button id="close-btn" class="close-btn" onclick="toggleForm()">&times;</button>
-      <form id="registrationForm">
+        <h2>Novo Recebimento</h2>
+        <button id="close-btn" class="close-btn" onclick="toggleForm()">&times;</button>
+        <form id="registrationForm">
 
-        <div class="input-container">
-          <input type="text" id="productFont" placeholder=" " required />
-          <label for="productFont">Nome do fornecedor</label>
-        </div>
+          <div class="input-container">
+            <input type="text" id="productFont" placeholder=" " required />
+            <label for="productFont">Nome do fornecedor</label>
+          </div>
 
-        <div class="input-container">
-          <input type="number" id="codigo" min="0" max="9999999999999" placeholder=" " required />
-          <label for="productCode">Código do produto</label>
-        </div>
+          <div class="input-container">
+            <input type="number" id="codigo" min="0" max="9999999999999" placeholder=" " required />
+            <label for="productCode">Código do produto</label>
+          </div>
 
-        <div class="input-container">
-          <input type="number" id="quantityReceived" placeholder=" " required />
-          <label for="quantityReceived">Quantidade recebida</label>
-        </div>
+          <div class="input-container">
+            <input type="number" id="quantityReceived" placeholder=" " required />
+            <label for="quantityReceived">Quantidade recebida</label>
+          </div>
 
-        <div class="input-container">
-          <input type="number" id="numbLote" placeholder=" " required />
-          <label for="numbLote">N° do Lote</label>
-        </div>
+          <div class="input-container">
+            <input type="number" id="numbLote" placeholder=" " required />
+            <label for="numbLote">N° do Lote</label>
+          </div>
 
-        <div class="input-container">
-          <input type="date" id="dataRecebimento" placeholder=" " required />
-          <label for="dataRecebimento">Data de recebimento</label>
-        </div>
+          <div class="input-container">
+            <input type="date" id="dataRecebimento" placeholder=" " required />
+            <label for="dataRecebimento">Data de recebimento</label>
+          </div>
 
-        <div class="input-container">
-          <input type="date" id="validade" placeholder=" " />
-          <label for="validade">Data de Validade</label>
-        </div>
+          <div class="input-container">
+            <input type="date" id="validade" placeholder=" " />
+            <label for="validade">Data de Validade</label>
+          </div>
 
-        <div class="input-container">
-          <input type="number" step="0.01" id="precoAqui" placeholder=" " required />
-          <label for="validade">Preço de Aquisição</label>
-        </div>
+          <div class="input-container">
+            <input type="number" step="0.01" id="precoAqui" placeholder=" " required />
+            <label for="validade">Preço de Aquisição</label>
+          </div>
 
-        <button type="submit" id="submitButton">
-          Cadastrar
-        </button>
-      </form>
-    </div>
+          <button type="submit" id="submitButton">
+            Cadastrar
+          </button>
+        </form>
+      </div>
     </dialog>
   </div>
 
@@ -172,7 +173,7 @@
 
 
       try {
-        const response = await fetch('http://127.0.0.1:8000/adicionar-recebimento', {
+        const response = await fetch(`${API_BASE_URL}/adicionar-recebimento`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(recebimento),
@@ -219,19 +220,19 @@
             </div>
             <div id="dropdown" class="dentrodropdown">
               <select id="categoria" name="categoria">
-                  <option value="">Selecione Categoria</option>
-                  <!-- opções adicionadas dinamicamente via JavaScript -->
+                <option value="">Selecione Categoria</option>
+                <!-- opções adicionadas dinamicamente via JavaScript -->
               </select>
               <select id="fornecedor" name="fornecedor">
-                  <option value="">Selecione Fornecedor</option>
-                  <!-- fornecedores adicionados dinamicamente via JavaScript -->
+                <option value="">Selecione Fornecedor</option>
+                <!-- fornecedores adicionados dinamicamente via JavaScript -->
               </select>
               <select id="fabricante" name="fabricante">
-                  <option value="">Selecione Fabricante</option>
-                  <!-- fabricantes adicionados dinamicamente via JavaScript -->
+                <option value="">Selecione Fabricante</option>
+                <!-- fabricantes adicionados dinamicamente via JavaScript -->
               </select>
-          </div>
-          <!-- <div id="inputdata">
+            </div>
+            <!-- <div id="inputdata">
                             <label>Data:</label>
                             <div id="ajeitardata">
                                 <input type="date" id="dedata" name="dedata" class="datasize">
@@ -257,68 +258,68 @@
 
         <!-- acabou as mudanças -->
         <form id="formPesquisa">
-            <input type="text" id="pesquisa" placeholder="Digite o código">
-              <button id="pesquisar">Pesquisar <img src="imagens/lupa.svg" alt="" id="pes"></button>
-            </button>
+          <input type="text" id="pesquisa" placeholder="Digite o código">
+          <button id="pesquisar">Pesquisar <img src="imagens/lupa.svg" alt="" id="pes"></button>
+          </button>
         </form>
+      </div>
+    </div>
   </div>
- </div>
- </div>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
 
-        const estoqueItem = document.querySelector('.estoque-item');
-        const estoqueSubMenu = document.getElementById('estoque-submenu');
-        const estoqueLink = document.getElementById('esto');
-        const iconeEstoque = estoqueLink.querySelector('.boxes-of-good-good');
+      const estoqueItem = document.querySelector('.estoque-item');
+      const estoqueSubMenu = document.getElementById('estoque-submenu');
+      const estoqueLink = document.getElementById('esto');
+      const iconeEstoque = estoqueLink.querySelector('.boxes-of-good-good');
 
-        const submenuLinks = estoqueSubMenu.querySelectorAll('a');
-        submenuLinks.forEach(link => {
-          link.addEventListener('click', function (event) {
-            event.stopPropagation();
-          });
+      const submenuLinks = estoqueSubMenu.querySelectorAll('a');
+      submenuLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+          event.stopPropagation();
         });
+      });
 
-        estoqueItem.addEventListener('click', function (event) {
-          event.preventDefault();
+      estoqueItem.addEventListener('click', function (event) {
+        event.preventDefault();
 
-          estoqueItem.classList.toggle('active');
-          if (estoqueItem.classList.contains('active')) {
-            estoqueSubMenu.style.display = "block";
-            estoqueItem.style.backgroundColor = "#000";
-            estoqueLink.style.color = "#319DF6";
-            iconeEstoque.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23319df6' d='M10 4v11h12V4zm2 2h2v4l2-2l2 2V6h2v7h-8zM3 17v11h12V17zm14 0v11h12V17zM5 19h2v4l2-2l2 2v-4h2v7H5zm14 0h2v4l2-2l2 2v-4h2v7h-8z'/%3E%3C/svg%3E\")";
-          } else {
-            estoqueSubMenu.style.display = "none";
-            estoqueItem.style.backgroundColor = "";
-            estoqueLink.style.color = "";
-            iconeEstoque.style.backgroundImage = "";
-          }
-        });
+        estoqueItem.classList.toggle('active');
+        if (estoqueItem.classList.contains('active')) {
+          estoqueSubMenu.style.display = "block";
+          estoqueItem.style.backgroundColor = "#000";
+          estoqueLink.style.color = "#319DF6";
+          iconeEstoque.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23319df6' d='M10 4v11h12V4zm2 2h2v4l2-2l2 2V6h2v7h-8zM3 17v11h12V17zm14 0v11h12V17zM5 19h2v4l2-2l2 2v-4h2v7H5zm14 0h2v4l2-2l2 2v-4h2v7h-8z'/%3E%3C/svg%3E\")";
+        } else {
+          estoqueSubMenu.style.display = "none";
+          estoqueItem.style.backgroundColor = "";
+          estoqueLink.style.color = "";
+          iconeEstoque.style.backgroundImage = "";
+        }
+      });
 
-        // Fecha o dropdown ao clicar fora
-        document.addEventListener('click', function (event) {
-          if (!estoqueItem.contains(event.target)) {
-            estoqueItem.classList.remove('active');
-            estoqueSubMenu.style.display = "none";
-            estoqueItem.style.backgroundColor = "";
-            estoqueLink.style.color = "";
-            iconeEstoque.style.backgroundImage = "";
-          }
-        });
-
-
+      // Fecha o dropdown ao clicar fora
+      document.addEventListener('click', function (event) {
+        if (!estoqueItem.contains(event.target)) {
+          estoqueItem.classList.remove('active');
+          estoqueSubMenu.style.display = "none";
+          estoqueItem.style.backgroundColor = "";
+          estoqueLink.style.color = "";
+          iconeEstoque.style.backgroundImage = "";
+        }
       });
 
 
-    </script>
+    });
+
+
+  </script>
 
 
 
 
 
 
- 
+
   <div class="header">
     <span class="title">Itens recebidos</span>
     <div class="divider"></div>
@@ -334,21 +335,21 @@
 
 
 
-<!-------------------BARRA DE PESQUISA-------------------->
+  <!-------------------BARRA DE PESQUISA-------------------->
 
   <script>
-    
+
     document.getElementById('formPesquisa').addEventListener('submit', async function (event) {
-  event.preventDefault(); // Impede o envio tradicional do formulário
+      event.preventDefault(); // Impede o envio tradicional do formulário
 
-  // antes estava com o id codigo do formulário de adicionar recebimento
-  const codigo = document.getElementById('pesquisa').value.trim(); // Obtém o valor do código 
+      // antes estava com o id codigo do formulário de adicionar recebimento
+      const codigo = document.getElementById('pesquisa').value.trim(); // Obtém o valor do código 
 
-  fetchData(event=null, num=codigo); // Chama a função para buscar os dados com o código fornecido
-});
+      fetchData(event = null, num = codigo); // Chama a função para buscar os dados com o código fornecido
+    });
 
-   
-   </script>
+
+  </script>
 
 
   <script src="js/financeiro.js"></script>

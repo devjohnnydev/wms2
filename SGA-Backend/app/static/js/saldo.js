@@ -9,7 +9,7 @@ let fornecedores = [];
 async function fetchSaldos(event = null, num = 0) {
   try {
 
-    saldo_url = num ? `http://127.0.0.1:8000/saldos/${num}` : 'http://127.0.0.1:8000/saldos';
+    saldo_url = num ? `${API_BASE_URL}/saldos/${num}` : `${API_BASE_URL}/saldos`;
 
     const response = await fetch(saldo_url);
 
@@ -63,7 +63,7 @@ async function fetchSaldos(event = null, num = 0) {
     });
 
     montarTabela();
-    
+
   } catch (error) {
     alert('Erro ao buscar saldos: ' + error.message);
   }
@@ -199,7 +199,7 @@ function montarTabela() {
     tabelaRecebimentos.appendChild(detailsRow);
   });
 }
-  
+
 // Chama a função ao carregar a página
 window.onload = fetchSaldos;
 
@@ -210,15 +210,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //mostrar ou esconder o caixote
   filtrarButton.addEventListener("click", (event) => {
-      caixote.classList.toggle("active");
-      event.stopPropagation(); // impede que o click no filtro feche o dropdown
+    caixote.classList.toggle("active");
+    event.stopPropagation(); // impede que o click no filtro feche o dropdown
   });
 
   // Fecha o caixote se clicar fora dele
   document.addEventListener("click", (event) => {
-      if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
-          caixote.classList.remove("active");
-      }
+    if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
+      caixote.classList.remove("active");
+    }
   });
 });
 
@@ -243,7 +243,7 @@ categoriaSelect.addEventListener("change", () => {
 });
 
 fabricanteSelect.addEventListener("change", () => {
-  if (fabricanteSelect.selectedIndex !== 0){
+  if (fabricanteSelect.selectedIndex !== 0) {
     tabelaOpts.fabricante = fabricanteSelect.value;
   } else { // se selecionar a primeira opção
     tabelaOpts.fabricante = ''; // reseta o valor
@@ -252,7 +252,7 @@ fabricanteSelect.addEventListener("change", () => {
 });
 
 fornecedorSelect.addEventListener("change", () => {
-  if (fornecedorSelect.selectedIndex !== 0){
+  if (fornecedorSelect.selectedIndex !== 0) {
     tabelaOpts.fornecedor = fornecedorSelect.value;
   } else { // se selecionar a primeira opção
     tabelaOpts.fornecedor = ''; // reseta o valor

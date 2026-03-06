@@ -18,7 +18,7 @@ async function fetchData(event = null, num = 0) {
   console.log('teste' + num)
   try {
     // Se um número for passado, busca por ele, senão busca todos
-    const recebimento_url = num ? `http://127.0.0.1:8000/recebimento/${num}` : 'http://127.0.0.1:8000/recebimento';
+    const recebimento_url = num ? `${API_BASE_URL}/recebimento/${num}` : `${API_BASE_URL}/recebimento`;
     const response = await fetch(recebimento_url);
 
     if (!response.ok) {
@@ -63,7 +63,7 @@ async function fetchData(event = null, num = 0) {
     });
     fornecedores.sort();
     // limpa os selects antes de adicionar os novos valores para evitar duplicatas
-    fornecedorSelect.innerHTML = '<option value="" disabled selected>Selecione o fornecedor</option>'; 
+    fornecedorSelect.innerHTML = '<option value="" disabled selected>Selecione o fornecedor</option>';
     fornecedores.forEach(fornecedor => {
       const option = document.createElement("option");
       option.value = fornecedor;
@@ -72,7 +72,7 @@ async function fetchData(event = null, num = 0) {
     });
 
     montarTabela();
-    
+
   } catch (error) {
     alert('Erro ao buscar recebimentos: ' + error.message);
   };
@@ -130,7 +130,7 @@ function montarTabela() {
     if (
       tabelaOpts.datas.length > 0 &&
       (tabelaOpts.datas[0] > parseDataBr(recebimento.data_receb) ||
-      tabelaOpts.datas[1] < parseDataBr(recebimento.data_receb))
+        tabelaOpts.datas[1] < parseDataBr(recebimento.data_receb))
     ) {
       return;
     };
@@ -186,15 +186,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   //mostrar ou esconder o caixote
   filtrarButton.addEventListener("click", (event) => {
-      caixote.classList.toggle("active");
-      event.stopPropagation(); // impede que o click no filtro feche o dropdown
+    caixote.classList.toggle("active");
+    event.stopPropagation(); // impede que o click no filtro feche o dropdown
   });
 
   // Fecha o caixote se clicar fora dele
   document.addEventListener("click", (event) => {
-      if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
-          caixote.classList.remove("active");
-      };
+    if (!caixote.contains(event.target) && !filtrarButton.contains(event.target)) {
+      caixote.classList.remove("active");
+    };
   });
 });
 
@@ -218,7 +218,7 @@ categoriaSelect.addEventListener("change", () => {
 });
 
 fabricanteSelect.addEventListener("change", () => {
-  if (fabricanteSelect.selectedIndex !== 0){
+  if (fabricanteSelect.selectedIndex !== 0) {
     tabelaOpts.fabricante = fabricanteSelect.value;
   } else { // se selecionar a primeira opção
     tabelaOpts.fabricante = ''; // reseta o valor

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Gráfico</title>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Adicionando SweetAlert -->
+    <link rel="stylesheet" href="css/telaInicial.css">
+</head>
+<body>
+    <div class="navbar">  
+        <img src="imagens/SENAI_logo.png" alt="Logo do senai" id="logo_senai">
+        <img src="imagens/icon_sair.png" alt="icone de sair" id="logoutButton">
+    </div>
+<section class="main-content">
+    <div class="container-grafico">
+        <h2 id="titulo-grafico"></h2>
+        <div id="chart" ></div>     
+        <button id="Alternar" onclick="trocarGrafico(selectedIndex + 1)"><span>Alternar Gráfico</span></button>
+    </div>
+<div class="button-container">
+    <div class="button green" id="botaoCadastro" onclick="redirecionarCadastro()">
+        <img src="imagens/Vector (1).svg" alt="">
+        <div class="texto">
+            <p>Cadastro</p>
+            <small>Cadastrar Novo Item</small>
+        </div>
+    </div>
+    <div class="button red" onclick="redirecionarEdicao()">
+        <img src="imagens/Vector.svg" alt="">
+        <div class="texto">
+            <p>Edição</p>
+            <small>Editar/Excluir Itens</small>
+        </div>
+    </div>
+
+    <div class="button blue" id="botaoEstoque" onclick="redirecionarEstoque()">
+        <img src="imagens/vaadin_storage.svg" alt="">
+        <div class="texto">
+            <p>Estoque</p>
+            <small>WMS</small>
+        </div>
+    </div>
+    <div class="dropdown-content" id="estoqueDropdown" style="display: none;">
+        <a href="catalogo.html">• Catálogo</a>
+        <a href="estoque_real.html">• Estoque Real e Inventário</a>
+        <a href="layout.html">• Layout do Estoque</a>
+    </div>
+
+    <div class="button yellow" onclick="redirecionarFinanceiro()">
+        <img src="imagens/ic_outline-attach-money.svg" alt="">
+        <div class="texto">
+            <p>Financeiro</p>
+            <small>Movimentações</small>
+        </div>
+    </div>
+</div>
+</section>
+
+</body>
+<script>
+
+    // ---------------------------------------------logout
+
+    document.getElementById('logoutButton').addEventListener('click', async () => {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+
+        if (!usuarioLogado) {
+            alert('Nenhum usuário está logado!');
+            return;
+        }
+
+        try {
+            const response = await fetch('/api/logout', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: usuarioLogado.email }),
+            });
+
+            Swal.fire({
+                title: "Sair",
+                text: "Você tem certeza que deseja sair?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Sim, sair!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    if (response.ok) {
+                        Swal.fire('Logout realizado com sucesso!', '', 'success');
+                        localStorage.removeItem('usuarioLogado');
+                        document.getElementById('logoutButton').style.display = 'none';
+                        window.location.href = "index.html"; 
+                    } else {
+                        const errorMessage = response.statusText || "Erro ao fazer logout.";
+                        Swal.fire('Erro', errorMessage, 'error');
+                    }
+                }
+            });
+
+        } catch (error) {
+            Swal.fire('Erro', 'Erro ao fazer logout: ' + error.message, 'error');
+        }
+    });
+
+    // Atualiza o botão de logout após o login
+    function toggleLogoutButton() {
+        const usuarioLogado = JSON.parse(localStorage.getItem('usuarioLogado'));
+        document.getElementById('logoutButton').style.display = usuarioLogado ? 'block' : 'none';
+    }
+
+    // Chamando a função para garantir consistência ao carregar a página
+    toggleLogoutButton();
+
+    // Redireciona para respectiva tela 
+    function redirecionarFinanceiro() {
+        window.location.href = "financeiro.html"; 
+    }
+    function redirecionarCadastro() {
+        window.location.href = "cadastro1.html";
+    }
+    function redirecionarEdicao() {
+        window.location.href = "edicao.html";
+    }
+
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // Seleciona o botão e o dropdown
+    const botaoEstoque = document.getElementById("botaoEstoque");
+    const dropdown = document.getElementById("estoqueDropdown");
+
+    // Adiciona um event listener para o clique FORA do dropdown (apenas uma vez)
+    window.addEventListener('click', function (event) {
+        if (!event.target.matches('#botaoEstoque') && dropdown.style.display === 'block') {
+            dropdown.style.display = 'none';
+            botaoEstoque.querySelector('img').style.display = 'block'; // Restaura o ícone
+            botaoEstoque.querySelector('.texto').style.display = 'block'; // Restaura o texto
+            botaoEstoque.onclick = redirecionarEstoque; // Restaura o clique no botão
+            botaoEstoque.style.display = 'block';
+            botaoEstoque.style.background = "linear-gradient(-90deg, rgba(0, 93, 150, 1) 0%, rgba(91, 193, 255, 1) 100%)";
+            botaoEstoque.style.boxShadow = "2px 2px 5px #002246";
+            botaoEstoque.style.width = "17vw";
+            botaoEstoque.style.height = "14vh";
+            botaoEstoque.style.color = "white";
+            botaoEstoque.style.fontFamily = "Arial, sans-serif";
+            botaoEstoque.style.fontWeight = "bold";
+            botaoEstoque.style.display = "flex";
+            botaoEstoque.style.flexDirection = "row";
+            botaoEstoque.style.justifyContent = "center";
+            botaoEstoque.style.alignItems = "center";
+            botaoEstoque.style.textAlign = "center";
+            botaoEstoque.style.cursor = "pointer";
+        }
+    });
+
+    // Função que controla o dropdown
+    function redirecionarEstoque() {
+        botaoEstoque.querySelector('img').style.display = 'none';
+        botaoEstoque.querySelector('.texto').style.display = 'block'; // Corrigido: exibe o texto "Estoque - WMS"
+        dropdown.style.display = 'block';
+        botaoEstoque.style.display = 'none'; // Esconde o botão original
+
+        // Cria os links do dropdown apenas uma vez
+        if (!dropdown.hasChildNodes()) {
+            const links = [
+                { text: "Catálogo", href: "catalogo.html" },
+                { text: "Estoque Real e Inventário", href: "estoque_real.html" },
+                { text: "Layout do Estoque", href: "layout.html" }
+            ];
+
+            links.forEach(link => {
+                const a = document.createElement('a');
+                a.href = link.href;
+                a.textContent = link.text;
+                dropdown.appendChild(a);
+            });
+        }
+
+        dropdown.style.position = "static";
+        dropdown.style.minWidth = "inherit";
+
+        botaoEstoque.onclick = null; // Remove o event listener do botão (opcional)
+    }
+
+    // Estilização do botão Estoque
+    estoqueDropdown.style.boxShadow = "5px 5px 2px #156DB4";
+    estoqueDropdown.style.fontFamily = "Inter, serif;";
+
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+        let chart; // Variável global para armazenar o gráfico
+        const colors = ['#FF4560', '#008FFB', '#00E396', '#FEB019', '#775DD0', '#546E7A', '#26A69A', '#D10CE8'];
+
+        // Configurações para o gráfico
+        const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+        let selectedIndex = 0;
+
+        // Função para buscar dados da API
+        async function fetchData() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/telaInicial');
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.error('Erro ao buscar dados:', error);
+                return { categories: [], values: [] };
+            }
+        }
+
+        // Função para renderizar o gráfico
+        async function renderChart() {
+            const data = await fetchData();
+
+            // arruma os dias para o sistema brasileiro
+            const days = [];
+            data.days.forEach(dia => {
+                const diaBr = new Date(dia)
+                days.push(diaBr.toLocaleDateString('pt-BR'));
+            });
+
+            // ------------------- Agrupar por mês -----------------------------
+            let lastMonth = -1; // variável para checar os meses
+            let ind = -1; // indice das arrays mensais
+            const dataMensal = {
+                issues: [],
+                receipts: []
+            }; 
+            const monthsData = [];
+            data.days.forEach((day, index) => {
+                const month = new Date(day).getMonth();
+                const year = new Date(day).getFullYear();
+                // organiza os meses
+                if(!monthsData.includes(meses[month]+"-"+year)) monthsData.push(meses[month]+"-"+year);
+                
+                // organiza as movimentações mensais
+                const issue = parseInt(data.issues[index]); 
+                const receipt = parseInt(data.receipts[index]);
+
+                if(lastMonth != month) {
+                    dataMensal.issues.push(issue);
+                    dataMensal.receipts.push(receipt);
+                    lastMonth = month;
+                    ind += 1;
+                } else {
+                    dataMensal.issues[ind] += issue;
+                    dataMensal.receipts[ind] += receipt;
+                }
+            });
+
+            // ------------------ Organiza as opções do gráfico ---------------------
+            const daysLength = days.length; 
+            const optionsType = [
+                { // Barras
+                    series: [{ data: data.values }],
+                    chart: { height: 350, type: 'bar' },
+                    colors: colors,
+                    plotOptions: {
+                        bar: { columnWidth: '45%', distributed: true }
+                    },
+                    dataLabels: { enabled: false },
+                    legend: { show: false },
+                    xaxis: {
+                        categories: data.categories,
+                        labels: {
+                            style: { colors: colors, fontSize: '12px' }
+                        }
+                    }
+                },
+                { // Diário (Apenas os últimos 30 dias)
+                    series: [
+                        { name: 'Saída', data: data.issues.slice(daysLength - 30, daysLength) },
+                        { name: 'Recebimento', data: data.receipts.slice(daysLength - 30, daysLength) }
+                    ],
+                    chart: { height: 350, type: 'area' },
+                    stroke: { curve: 'smooth' },
+                    xaxis: {
+                        type: 'category',
+                        categories: days.slice(daysLength - 30, daysLength),
+                        labels: {
+                            format: 'dd/MM/yyyy',
+                            style: {
+                                colors: colors,
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        x: {
+                            format: 'dd/MM/yyyy'
+                        }
+                    }
+                },
+                { // Mensal
+                    series: [
+                        { name: 'Saída', data: dataMensal.issues },
+                        { name: 'Recebimento', data: dataMensal.receipts }
+                    ],
+                    chart: { height: 350, type: 'area' },
+                    stroke: { curve: 'smooth' },
+                    xaxis: {
+                        type: 'category',
+                        categories: monthsData,
+                        labels: {
+                            format: 'dd/MM/yyyy',
+                            style: {
+                                colors: colors,
+                                fontSize: '12px'
+                            }
+                        }
+                    },
+                    tooltip: {
+                        x: {
+                            format: 'dd/MM/yyyy'
+                        }
+                    }
+                }
+            ];
+              
+            const options = optionsType[selectedIndex];
+
+            // Atualiza o título do gráfico
+            const titles = ['Gráfico de barras', 'Gráfico diário', 'Gráfico mensal'];
+            document.getElementById('titulo-grafico').innerText = titles[selectedIndex];
+
+            if (chart) chart.destroy(); // Destroi o gráfico anterior
+            chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        };
+
+        // Alternar entre os gráficos
+        let counter = 0; // variável que define o tipo do gráfico
+        function trocarGrafico(novoIndex) {
+            selectedIndex = novoIndex % 3; // garante que o índice fique entre 0 e 2
+            renderChart();
+        }
+
+        // Renderizar o gráfico inicial (barras)
+        renderChart();
+    </script>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Adicionando SweetAlert -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <script src="js/config.js"></script>
+</head>
+
+<body>
+
+    <img id="bolinhacima" src="imglogineusuario/" alt="">
+    <img id="bolinhadireita" src="imglogineusuario/bolinhas.svg" alt="">
+    <img id="bolinhaesquerda" src="imglogineusuario/bolinhas.svg" alt="">
+    <img id="cima" src="imglogineusuario/caixascima.svg" alt="">
+    <img id="direita" src="imglogineusuario/caixasdireita.svg" alt="">
+    <img id="esquerda" src="imglogineusuario/caixasesquerda.svg" alt="">
+    <img id="logo" src="imglogineusuario/logosga.svg" alt="">
+    <img id="senai" src="imglogineusuario/senaibranco.svg" alt="">
+    <img id="grupo" src="imglogineusuario/logogrupo.svg" alt="">
+
+    <div class="traco"></div>
+    <p id="mor">Morvan Figueiredo</p>
+    <p id="nome">©DEVS-SENAI-SP - 2024</p>
+
+    <div class="fundo">
+        <h1>Login</h1>
+        <h2>Bem-vindo ao sistema WMS!</h2>
+        <form id="loginForm">
+            <label id="usu" for="email">Usuário:</label>
+            <input type="email" id="email" required />
+            <br />
+            <label id="sen" for="senha">Senha:</label>
+            <input type="password" id="senha" required />
+            <br />
+            <button id="entrar" type="submit">
+                <p>Entrar</p>
+            </button>
+        </form>
+
+    </div>
+
+        <script>
+            
+        document.getElementById('loginForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+
+            try {
+            const response = await fetch(`${API_BASE_URL}/login`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, senha }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok && data.access_token) {
+                localStorage.setItem('access_token', data.access_token);
+                localStorage.setItem('usuario_email', data.email);
+                localStorage.setItem('usuario_tipo', data.tipo_usuario);
+
+                if (data.tipo_usuario === 'professor') {
+                    window.location.href = "telaInicial-Professor.html";
+                } else {
+                    window.location.href = "telaInicial.html";
+                }
+
+            } else {
+                Swal.fire('Erro', data.detail || 'Credenciais inválidas.', 'error');
+            }
+            } catch (error) {
+            Swal.fire('Erro', 'Erro ao fazer login: ' + error.message, 'error');
+            }
+        });
+        </script>
+
+</body>
+
+</html>

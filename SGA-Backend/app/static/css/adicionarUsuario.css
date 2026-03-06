@@ -1,0 +1,445 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to top right, #0E0E0E 25%, #747474);
+    overflow: hidden;
+}
+
+#senai {
+    position: absolute;
+    width: 9.27vw;
+    margin-top: 1.45%;
+    margin-left: 2.5%;
+}
+
+.traco {
+    position: absolute;
+    width: 0.01vw;
+    height: 6.2vh;
+    background-color: white;
+    margin-top: 1.75%;
+    margin-left: 12.25%;
+}
+
+#mor {
+    position: absolute;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 250;
+    font-size: 2.1vh;
+    margin-top: 2.1%;
+    margin-right: 79%;
+    margin-left: 13.2%;
+}
+
+#logo {
+    position: absolute;
+    width: 5.47vw;
+    margin-left: 4.375%;
+    margin-top: 5.3%;
+}
+
+#bolinhacima {
+    position: absolute;
+    width: 5.2vw;
+    margin-left: 47%;
+    margin-top: -5.4%;
+    transform: rotate(-90deg);
+}
+
+#cima {
+    position: absolute;
+    width: 6.71vw;
+    margin-left: 81%;
+    margin-top: 2.3%;
+}
+
+#bolinhadireita {
+    position: absolute;
+    width: 5.2vw;
+    margin-left: 94.8%;
+    margin-top: 18%;
+}
+
+#bolinhaesquerda {
+    position: absolute;
+    width: 5.2vw;
+    margin-top: 14%;
+    transform: rotate(-90deg);
+}
+
+#esquerda {
+    position: absolute;
+    width: 22.8vw;
+    margin-top: 26.35%;
+}
+
+#direita {
+    position: absolute;
+    width: 23vw;
+    margin-top: 33.25%;
+    margin-left: 76.95%;
+}
+
+#grupo {
+    position: absolute;
+    width: 4.4vw;
+    margin-top: 47%;
+    margin-left: 43%;
+}
+
+#nomee {
+    position: absolute;
+    margin-top: 47.7%;
+    margin-left: 48%;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 250;
+    font-size: 1.6vh;
+}
+
+#usuarioForm {
+    position: absolute;
+    width: 30vw;
+    height: 66vh;
+    background: #1c1c1cb0;
+    border-radius: 5%;
+    margin-top: 9.8%;
+    margin-left: 35.7%;
+}
+
+.input-container {
+    position: relative;
+    display: inline-block;
+    margin-left: 10%;
+}
+
+.input-icon {
+    position: absolute;
+    width: 3.5vw;
+    height: 3.5vh;
+    transform: translateY(32%);
+    z-index: 1;
+}
+
+.custom-input {
+    position: absolute;
+    padding-left: 3vw;
+    padding-top: 0.4vh;
+    font-size: 2.5vh;
+    height: 5vh;
+    width: 21.2vw;
+    border-radius: 0.6vh;
+    border: 0;
+}
+
+
+#dataEntrada, #dataNasc {
+    display: none;
+}
+
+h1 {
+    position: absolute;
+    color: white;
+    font-family: "Inter", sans-serif;
+    font-weight: 300;
+    font-size: 4.5vh;
+    margin-left: 16%;
+}
+
+#conjunome {
+    margin-top: 22%;
+}
+
+#conjuemail, #conjusenha, #conjudatanasc {
+    margin-top: 13%;
+}
+
+.custom-text {
+    position: absolute;
+    padding-left: 2.4vw;
+    padding-top: 0.5vh;
+    font-size: 2.1vh;
+    height: 5.2vh;
+    width: 10vw;
+    border-radius: 0.6vh;
+    border: 0;
+}
+
+.custom-text2 {
+    position: absolute;
+    padding-left: 2.4vw;
+    padding-top: 0.5vh;
+    font-size: 2.1vh;
+    height: 5.2vh;
+    width: 8vw;
+    border-radius: 0.6vh;
+    border: 0;
+}
+
+.nascimage, .entraimage {
+    position: absolute;
+    width: 2.8vw;
+    height: 2.8vh;
+    transform: translateY(53%);
+    z-index: 1;
+}
+
+#dataNasc {
+    position: absolute;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    font-size: 2.5vh;
+    height: 5.8vh;
+    width: 9.3vw;
+    border-radius: 0.6vh;
+    border: 0;
+}
+
+#dataEntrada {
+    position: absolute;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    font-size: 2.5vh;
+    height: 5.8vh;
+    width: 9.3vw;
+    border-radius: 0.6vh;
+    border: 0;
+}
+ 
+#conjuentrada {
+    position: absolute;
+    margin-left: 56.5%;
+    margin-top: -3.85%;
+}
+
+#enviar {
+    position: absolute;
+    font-family: "Inter", sans-serif;
+    font-weight: 350;
+    font-size: 3vh;
+    height: 5vh;
+    width: 24.5vw;
+    border-radius: 0.6vh;
+    border: 0;
+    background-color: #D61717;
+    color: white;
+    margin-left: 10%;
+    margin-top: 10%;
+    cursor: pointer;
+}
+
+#sair {
+    position: absolute;
+    font-family: "Inter", sans-serif;
+    font-weight: 350;
+    font-size: 3.2vh;
+    height: 5vh;
+    width: 5vw;
+    border-radius: 0.6vh;
+    border: 0;
+    background-color: #D61717;
+    color: white;
+    padding-left: 2%;
+    padding-top: 0.5%;
+    text-decoration: none;
+    margin-left: 91%;
+    margin-top: 1%;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* Monitores menores */
+@media (max-width: 1400px) {
+    #grupo {
+        margin-top: 44.5%;
+        }
+    #nomee {
+        margin-top: 45%;
+        }
+    #conjuentrada {
+        margin-top: -5%;
+    }
+    #enviar {
+        margin-top: 1%;
+    }
+}
+/* ---------------------------------------------------------------------------- */
+/* PARA TABLET Vertical */
+@media (max-width: 1199px) {
+    #senai {
+        width: 25vw;
+    }
+    .traco {
+        margin-left: 28.7%;
+    }
+    #mor {
+        font-size: 1.7vh;
+        margin-top: 2.9%;
+        margin-left: 30%;
+    }
+    #logo {
+        width: 10vw;
+        margin-top: 12%;
+    }
+    #cima {
+        margin-left: 65%;
+        width: 11vw;
+    }
+    #bolinhadireita {
+        width: 8vw;
+        margin-left: 95%;
+        margin-top: 80%;
+    }
+    #bolinhaesquerda {
+        width: 8vw;
+        margin-top: 20%;
+    }
+    #bolinhacima{
+        margin-top: -10%;
+    }
+    #esquerda {
+        position: absolute;
+        width: 30vw;
+        margin-top: 125%;
+    }
+    #direita {
+        width: 30vw;
+        margin-top: 137%;
+    }
+    #grupo {
+        width: 8vw;
+        margin-top: 140%;
+        margin-left: 36%;
+    }
+    #nomee {
+        margin-top: 140.6%;
+        margin-left: 45%;
+    }
+    #usuarioForm {
+        width: 70vw;
+        height: 55vh;
+        margin-top: 40%;
+        margin-left: 20%;
+    }
+    h1 {
+        font-size: 3.8vh;
+        margin-left: 8%;
+        margin-top: 10%;
+    }
+    .custom-input {
+        width: 53vw;
+    }
+    #conjunome {
+        margin-top: 30%;
+    }
+    #conjuemail, #conjusenha, #conjudatanasc {
+        margin-top: 13%;
+    }
+    .custom-text {
+        font-size: 1.7vh;
+        width: 27vw;
+    }
+    .custom-text2 {
+        font-size: 1.7vh;
+        width: 21vw;
+    }
+    #conjuentrada {
+        margin-top: -2.5%;
+    }
+    input{
+        font-size: 3vw;
+    }
+    #enviar {
+        width: 56vw;
+        margin-top: 16%;
+        margin-left: 10%;
+    }
+    #sair {
+        width: 11vw;
+        margin-left: 83%;
+    }
+}
+/* ---------------------------------------------------------------------------- */
+/* PARA CELULAR */
+@media (max-width: 425px){
+    #senai {
+        width: 23vw;
+    }
+    .traco {
+        height: 0.1vh;
+        background-color: transparent;
+    }
+    #mor {
+        font-size: 1.5vh;
+        margin-top: 2.4%;
+        margin-left: 27%;
+    }
+    #logo {
+        width: 9vw;
+        margin-top: 10%;
+    }
+    #bolinhadireita {
+        width: 8vw;
+        margin-left: 92%;
+        margin-top: 100%;
+    }
+    #bolinhaesquerda {
+        margin-top: 28%;
+    }
+    #bolinhacima{
+        margin-top: -10%;
+    }
+    #esquerda {
+        margin-top: 150.35%;
+    }
+    #direita {
+        margin-top: 160.25%;
+    }
+    #grupo {
+        margin-top: 175%;
+    }
+    #nomee {
+        margin-top: 175.6%;
+        margin-left: 47%;
+        font-size: 1.2vh;
+    }
+    #usuarioForm {
+        height: 55vh;
+        width: 75vw;
+        margin-top: 50%;
+        margin-left: 14%;
+    }
+    h1 {
+        font-size: 3.3vh;
+        margin-top: 10%;
+        margin-left: 7%;
+    }
+    .custom-input {
+        width: 57vw;
+    }
+    .custom-text {
+        font-size: 1.5vh;
+        width: 27vw;
+    }
+    .custom-text2 {
+        font-size: 1.5vh;
+        width: 23vw;
+    }
+    #conjuentrada {
+        margin-top: -8%;
+        margin-left: 55%;
+    }
+    #enviar {
+        width: 57vw;
+        margin-top: 1%;
+        margin-left: 11%;
+    }
+    #sair {
+        font-size: 2.3vh;
+        width: 13vw;
+        height: 3.5vh;
+        margin-left: 81%;
+        margin-top: 2%;
+    }
+}

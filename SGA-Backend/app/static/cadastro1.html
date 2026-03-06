@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/cadastro1.css" />
+  <link rel="stylesheet" href="css/navbar.css" />
+  <title>SGA - Cadastro</title>
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <div class="navbar-caixa">
+    <div class="conteudo-nav">
+      <div class="texto-nav">Cadastrar Novo Item</div>
+      <button id="menu-btn" class="menu-btn">&#9776;</button>
+    </div>
+
+    <div id="sidebar" class="sidebar">
+      <button id="close-btn" class="close-btn">&times;</button>
+      <img src="imglogineusuario/senaibranco.svg" alt="" />
+      <h3>Menu</h3>
+      <ul>
+        <li class="home">
+          <a href="telaInicial.html" id="home"><span>Home</span></a>
+        </li>
+        <li class="cadastrar">
+          <a href="cadastro1.html" id="cadas"><span>Cadastrar</span></a>
+        </li>
+        <li class="edicao">
+          <a href="edicao.html" id="edicao"><span>Edição</span></a>
+        </li>
+        <li class="estoque-item">
+          <a href="#" id="esto" class="estoque-link"><span>Estoque</span></a>
+          <ul id="estoque-submenu" class="submenu">
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="estoque_real.html">Estoque Real e Inventário</a></li>
+            <li><a href="layout.html">Layout do Estoque</a></li>
+          </ul>
+        </li>
+        <li class="financeiro">
+          <a href="financeiro.html" id="finan"><span>Financeiro</span></a>
+        </li>
+      </ul>
+      <div class="container-logos">
+        <h4>SGA - Sistema de Gerenciamento de Armazém</h4>
+        <img src="imagens/logo-emp.svg" id="logo-gato" alt="" />
+        <img src="imagens/logo-soft.svg" id="logo-cubo" />
+      </div>
+    </div>
+  </div>
+
+  <!-- FORMULÁRIO -->
+  <section class="cadastro">
+    <form id="form-etapa1">
+      <div class="flex">
+        <!-- ESQUERDA -->
+        <div class="parte-bolinhas">
+          <div class="container">
+            <div class="bolinha1"></div>
+            <div class="palitinho1"></div>
+            <div class="bolinha2"></div>
+            <div class="palitinho2"></div>
+            <div class="bolinha3"></div>
+            <div class="palitinho3"></div>
+            <div class="bolinha4"></div>
+            <div class="palitinho4"></div>
+            <div class="bolinha5"></div>
+            <ul>
+              <li>Informações Básicas</li>
+              <li>Informações de Entrada</li>
+              <li>Categoria</li>
+              <li>Especificações</li>
+              <li>Adicional</li>
+            </ul>
+          </div>
+          <div class="caixa-aberta">
+            <img src="imgCADASTRO/CaixaAberta.svg" alt="" />
+          </div>
+        </div>
+
+        <!-- DIREITA -->
+        <div class="inserir-info">
+          <div class="container">
+            <div class="porcentagem-linha">
+              <div class="linha-verde"></div>
+            </div>
+            <p>20%</p>
+            <div class="divisoria"></div>
+            <div class="InformacoesBasicas">
+              <h1>Informações Básicas</h1>
+              <div class="caixaTexto">
+                <input id="codigo" type="text" placeholder="Código de Barras" required />
+              </div>
+              <div class="caixaTexto">
+                <input id="nomebasico" type="text" placeholder="Nome Básico" required />
+              </div>
+              <div class="caixaTexto">
+                <input id="nomemodificador" type="text" placeholder="Nome Modificador" required />
+              </div>
+              <div class="caixaTexto">
+                <textarea id="descricao" placeholder="Descrição Técnica"></textarea>
+              </div>
+            </div>
+          </div>
+          <div class="setas">
+            <button type="submit">
+              <img src="imgCADASTRO/setaDIREITA.svg" alt="Avançar" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="footer">
+      <img src="imgCADASTRO/gatinhoRodapé.svg" alt="" />
+    </div>
+  </section>
+
+  <script src="js/navbar.js"></script>
+  <script>
+    document.getElementById("form-etapa1").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const dados = {
+        codigo: document.getElementById("codigo").value,
+        nome_basico: document.getElementById("nomebasico").value,
+        nome_modificador: document.getElementById("nomemodificador").value,
+        descricao_tecnica: document.getElementById("descricao").value,
+      };
+
+      localStorage.setItem("cadastro_produto", JSON.stringify(dados));
+      window.location.href = "cadastro2.html";
+    });
+  </script>
+</body>
+
+</html>

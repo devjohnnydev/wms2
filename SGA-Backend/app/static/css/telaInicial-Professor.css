@@ -1,0 +1,320 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'inter';
+}
+
+body {
+  background-color: #F0F0F0;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-grafico {
+  width: 60vw;
+  height: 50vh;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1%;
+  margin-top: 5%;
+  margin-inline: auto;
+
+    & * {
+      margin-inline: auto;
+    }
+}
+
+#chart {
+  width: 90%;
+  height: 90%;
+  margin-top: 5%;
+}
+
+.buttons {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 5%;
+  margin-top: 7%;
+}
+
+#Financeiro,
+#Cadastro,
+#Edicao,
+#Estoque {
+  text-decoration: none;
+  padding-inline: 6vw;
+  padding-block: 6vh;
+  background-color: beige;
+}
+
+.button-container {
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin-inline: auto;
+  margin-top: 5%;
+}
+
+.button {
+  width: 17vw;
+  height: 14vh;
+  color: white;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.button .texto {
+  flex-direction: column;
+  margin-left: 6%;
+}
+
+.button:hover {
+  transform: scale(1.05);
+}
+
+.green {
+  background: linear-gradient(-90deg, rgba(10, 124, 17, 1) 0%, rgba(89, 218, 97, 1) 100%);
+  box-shadow: 2px 2px 5px #0f411b;
+}
+
+.red {
+  background: linear-gradient(-90deg, rgba(71, 5, 5, 1) 0%, rgba(206, 10, 10, 1) 100%);
+  box-shadow: 2px 2px 5px #4d0b0b;
+}
+
+.blue {
+  background: linear-gradient(-90deg, rgba(0, 93, 150, 1) 0%, rgba(91, 193, 255, 1) 100%);
+  box-shadow: 2px 2px 5px #002246;
+}
+
+.yellow {
+  background: rgb(134, 96, 0);
+  background: linear-gradient(-90deg, rgba(210, 153, 5, 1) 0%, rgba(255, 211, 51, 1) 100%);
+  box-shadow: 2px 2px 5px #806003;
+}
+
+#mudar {
+  display: none;
+  /* Esconde o checkbox */
+}
+
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+/* Estilos para o dropdown */
+.dropdown-content {
+  display: none; /* Inicialmente oculto */
+  position: absolute;
+  background-color: #ffffff;
+  /* min-width: 160px; */
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1; /* Para ficar acima de outros elementos */
+  width: 17vw;
+  height: 14.2vh;
+}
+
+.dropdown-content a {
+  color: #004671;
+  padding: 10px 30px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+/* Adicione esta classe ao botão para estilizar como dropdown */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.show { /* Para exibir o dropdown quando clicado */
+  display: block !important;
+}
+/* >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> */
+
+/* Estilo inicial do label */
+#Alternar {
+  margin-right: 100%;
+  padding-inline: 1vw;
+  padding-block: 1vh;
+  background-color: #006fe7;
+  border: 1px solid rgb(255, 255, 255);
+  color: aliceblue;
+  border-radius: 1vh;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Quando o checkbox estiver marcado (checked), a label muda de estilo */
+#mudar:checked+label#Alternar {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid #006fe7;
+  color: #006fe7;
+}
+
+.navbar {
+  width: 100%;
+  height: 10vh;
+  background-color: #FDFDFD;
+  box-shadow: 1vh 0 3vh #a0a0a0;
+}
+
+section {
+  margin-top: -7vh;
+}
+
+#logo_senai {
+  width: 10vw;
+  margin-top: 1.2%;
+  margin-left: 8vw;
+}
+
+#logoutButton {
+  width: 2vw;
+  margin-left: 90vw;
+  margin-top: -5.5vh;
+  cursor: pointer;
+}
+#logoutButton:hover {
+transform: scale(1.05);
+  }
+
+#adicionarUsuario{
+    position: absolute;
+    margin-top: 3vh;
+    margin-left: 54.2vw;
+    text-decoration: none;
+    color: white;
+    padding-inline: 0.5vw;
+    padding-block: 1vh;
+    background-color: rgb(73, 73, 73);
+    border-radius: 0.4vw;
+  }
+  #adicionarUsuario:hover{
+    background-color: black;
+    transform: scale(1.05);
+    transition: all ease 0.4s;
+  }
+
+  /* ---------------------------------------------------------------------------- */
+/* Monitores menores */
+@media (max-width: 1400px){
+  .container-grafico {
+    height: 55vh;
+  }
+  #chart{
+    margin-top: -1%;
+  }
+}
+/* ---------------------------------------------------------------------------- */
+/* PARA TABLET Vertical */
+@media (max-width: 1199px){
+  .navbar{
+    height: 5vh;
+  }
+  #logo_senai{
+    width: 17vw;
+  }
+  #adicionarUsuario{
+    margin-top: 1vh;
+  }
+  .container-grafico {
+    height: 23vh;
+    width: 50vh;
+    margin-top: 30%;
+    margin-left: 10%;
+  }
+  #chart{
+    height: 100%;
+    margin-top: -1%;
+  }
+  #Alternar{
+    margin-top: 2%;
+  }
+  .button-container {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 45%;
+    gap: 3vw;
+  }
+
+  .button {
+    width: 20vw;
+    height: 10vh;
+    font-size: 1vh;
+    flex-direction: column;
+  }
+  .button img{
+    width: 50%;
+  }
+}
+/* ---------------------------------------------------------------------------- */
+/* PARA CELULAR */
+@media (max-width: 425px){
+  .container-grafico {
+    width: 80%;
+    height: 47vh;
+    margin-top: 20%;
+    margin-left: 10%;
+  }
+  #chart{
+    margin-top: -4%;
+  }
+  #Alternar{
+    width: 16vh;
+    height: 2.5vh;
+  }
+  #logo_senai{
+    width: 25vw;
+    margin-top: 2%;
+  }
+  .navbar{
+    height: 6vh;
+  }
+  #adicionarUsuario{
+    font-size: 1.5vh;
+    margin-top: 1vh;
+    margin-left: 35vw;
+    width: 26vw;
+  }
+  .button-container {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 35%;
+    gap: 3vw;
+  }
+
+  .button {
+    width: 20vw;
+    height: 10vh;
+    font-size: 1vh;
+    flex-direction: column;
+  }
+
+  .button .texto {
+    display: none;
+  }
+
+  .button img{
+    width: 80%;
+  }
+}

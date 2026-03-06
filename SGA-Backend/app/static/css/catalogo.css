@@ -1,0 +1,463 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+}
+
+body {
+    background-color: #F0F0F0;
+    height: 100vh;
+}
+
+/* CABEÇALHO */
+.texto-nav {
+    color: #1F6FAF;
+}
+
+.sidebar ul li #esto {
+    color: #319DF6;
+
+    & .boxes-of-good-good {
+        display: inline-block;
+        width: 1.3em;
+        height: 1.3em;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23319df6' d='M10 4v11h12V4zm2 2h2v4l2-2l2 2V6h2v7h-8zM3 17v11h12V17zm14 0v11h12V17zM5 19h2v4l2-2l2 2v-4h2v7H5zm14 0h2v4l2-2l2 2v-4h2v7h-8z'/%3E%3C/svg%3E");
+    }
+}
+
+.estoque-item {
+    background-color: #000;
+}
+
+/* --------------------Mecanismo_Pesquisa--------------------- */
+.div_pesquisa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --------------------Filtro--------------------- */
+#filtrar, #pesquisar {
+    height: 5.5vh;
+    min-width: 10vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 0 1%;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(2vh, 1.25vw, 3vh);
+    background-color: white;
+    border-radius: 1.3vh;
+    cursor: pointer;
+    border: transparent;
+    box-shadow: 0.1vw 0.3vh 0.4vw 0.1vw rgba(0, 0, 0, 0.2);
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+
+#filtrar:hover, #pesquisar:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+#fil {
+    height: 70%;
+    background-color: white;
+}
+
+#pes {
+    height: 50%;
+    background-color: white;
+}
+
+textarea:focus,
+input:focus,
+select:focus {
+    outline: 0;
+}
+
+#barradebusca {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    gap: 1.5vh;
+    flex-wrap: wrap;
+}
+
+#codigo {
+    height: 5.4vh;
+    width: 55.10vw;
+    padding-left: 0.5%;
+    font-family: "Inter", sans-serif;
+    font-size: clamp(2.25vh, 1.5vw, 3.25vh);
+    background-color: white;
+    border-radius: 1.3vh;
+    cursor: pointer;
+    border: transparent;
+    box-shadow: 0.1vw 0.3vh 0.4vw 0.1vw rgba(0, 0, 0, 0.2);
+}
+
+#filtrarBtn {
+    background-color: #4E97D1;
+    color: white;
+    border: none;
+    padding: 2.4%;
+    border-radius: 10px;
+    margin-top: 40px;
+    margin-left: 65px;
+}
+
+#filtrarcontainer {
+    position: relative;
+    display: inline-block;
+}
+
+#caixote {
+    display: none;
+    position: absolute;
+    width: 20vw;
+    height: 39vh;
+    margin-top: 10%;
+    background-color: #fff;
+    z-index: 20;
+    box-shadow: 5px 5px 10px rgba(0,0,0,.2);
+    border-radius: 8px;
+    padding: 1rem;
+}
+
+#caixote.active {
+    display: block;
+}
+
+#ajeitar {
+    display: flex;
+    flex-direction: column;
+}
+
+#subajeitada {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: .8rem;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+}
+
+#textinho {
+    font-size: 13px;
+    color: #4E97D1;
+    cursor: pointer;
+    transition: .2s;
+}
+#textinho:hover { text-decoration: underline; }
+
+#dropdown {
+    display: none;
+    position: relative;
+    margin-top: 5%;
+    width: 5vw;
+    background-color: transparent;
+    border-radius: 0.5vh;
+    all: unset;
+    z-index: 1;
+    margin-left: 10%;
+}
+
+#caixote.active #dropdown {
+    display: block;
+}
+
+/* estilizando os selects */
+#dropdown select, #ordernaritem select {
+    width: 100%;
+    margin-top: .8rem;
+    padding: .6rem;
+    font-size: 14px;
+    background: #4E97D1;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    appearance: none;
+}
+
+#dropdown label, #ordernaritem label {
+    display: block;
+    margin-top: .6rem;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+}
+
+/* estilo quando o select e focado */
+select:focus {
+    outline: none;
+    border-color: #4E97D1;
+}
+
+/* estilizando as opçoes do select */
+option {
+    font-size: 14px;
+    padding: 1vh;
+    color: #ffffff;
+}
+
+select:hover option:hover {
+    background-color: #eaeaea;
+}
+
+#inputdata {
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.datasize {
+    width: 6vw;
+    height: 4vh;
+    margin-right: 2%;
+    appearance: none;
+    border-color: transparent;
+    background-color: #f4f4f4;
+    box-shadow: 5px 5px 5px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 1vh;
+}
+
+#ordernaritem {
+    margin-top: 5%;
+    margin-left: 10%;
+}
+
+.botoes {
+    background-color: #f4f4f4;
+    appearance: none;
+    height: 4vh;
+    width: 3vw;
+    border-radius: 1vh;
+    border: 0.1vh solid rgb(173, 173, 173);
+    cursor: pointer;
+}
+
+.botoes.clicked {
+    background-color: rgb(173, 173, 173);
+}
+
+#entrada {
+    width: 50vw;
+    height: 4vh;
+    border-radius: 1vh;
+    border-color: transparent;
+    box-shadow: 0.1em 0.1em;
+    font-size: larger;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content-table {
+    margin-top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow-y: auto;
+    height: 61.111vh;
+    width: 81.51vw;
+}
+
+#tabela-estoque {
+    width: 81.51vw;
+}
+
+#tabela-estoque th {
+    background-color: #4E97D1;
+    height: 4.074vh;
+    color: #fff;
+    border-collapse: collapse;
+    padding: 1vh;
+}
+
+#tabela-estoque tr,
+td {
+    background-color: #FFFFFF;
+    height: 4.074vh;
+    padding: 0.12vh 0.4vh 0.12vh 0.4vh;
+}
+
+#cabecalho-table {
+    position: sticky;
+    top: 0;
+}
+
+.colunaAbrirDetalhes {
+    background-color: #F0F0F0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.colunaAbrirDetalhes button {
+    border: none;
+    font-size: 20px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+/*-----LINHA DETALHES DA TABELA------*/
+.containerLinhaOculta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerLinhaDetalhes {
+    width: 75vw;
+    height: 40vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vh;
+}
+
+.imagemProduto {
+    background-color: transparent;
+    height: 30vh;
+    width: 18vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagemProduto img {
+    height: 100%;
+    width: 90%;
+}
+
+#imagemLinhaDetalhe {
+    height: 100%;
+    width: 100%;
+}
+
+.endereco-obs {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+#colunaTopico {
+    background-color: #D9D9D9;
+}
+
+.celulaDetalhe {
+    background-color: #F6F5F5;
+    height: 4vh;
+    width: 13vw;
+    padding: 0.4vh;
+}
+
+#tableObservacoes {
+    height: 5vh;
+    width: 26.2vw;
+    padding: 0.4vh;
+    background-color: #F6F5F5;
+}
+
+#celulaObservacoes {
+    background-color: #F6F5F5;
+}
+
+/* FOOTER */
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 6vh;
+}
+
+.footer img {
+    height: auto;
+    width: 35vh;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* Monitores menores */
+@media (max-width: 1400px){
+    #filtrarBtn{
+        margin-top: 10%;
+        margin-left: 75%;
+    }
+    #dropdown {
+        margin-left: 5%;
+    }
+    select {
+        width: 11vw;
+        margin-left: 4%;
+    }
+    #ordernaritem {
+        margin-left: 5%;
+    }
+}
+
+/* ---------------------------------------------------------------------------- */
+/* PARA TABLET Vertical */
+@media (max-width: 1199px){
+    #filtrar {
+        width: 20vw;
+        margin-left: 10%;
+    }
+    #pesquisar {
+        width: 17vw;
+    }
+    #caixote {
+        width: 30vw;
+        height: 20vh;
+        margin-left: 15%;
+    }
+    #dropdown {
+        margin-left: 13%;
+    }
+}
+
+/* ---------------------------------------------------------------------------- */
+/* PARA CELULAR */
+@media (max-width: 425px){
+    #filtrar {
+        font-size: 0;
+    }
+    #pesquisar {
+        width: 12vw;
+        font-size: 0;
+    }
+    #caixote {
+        width: 60vw;
+        height: 30vh;
+    }
+    #filtrarBtn{
+        margin-top: 5%;
+        margin-left: 70%;
+    }
+    #dropdown {
+        margin-left: 5%;
+    }
+    select {
+        width: 23vw;
+        margin-left: 4%;
+    }
+    .content-table{
+        width: 100%;
+    }
+    #cabecalho-table{
+        font-size: 0.7vh;
+    }
+    #tabela-estoque tr,
+    td {
+        font-size: 0.7vh;
+    }
+}

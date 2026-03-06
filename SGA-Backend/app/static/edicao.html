@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/edicao.css">
+    <link rel="stylesheet" href="css/navbar.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+        rel="stylesheet">
+    <title>Edição</title>
+</head>
+
+<body>
+    <!-- CABEÇALHO -->
+    <!---------------NAVBAR-------------------------------------------------->
+    <div class="navbar-caixa">
+        <div class="conteudo-nav">
+            <div class="texto-nav">Editar/Excluir Itens</div>
+
+            <button id="menu-btn" class="menu-btn">&#9776;</button>
+        </div>
+
+        <!--------------------------------HAMBURGUER------------------------------------------------------------------------------------>
+        <div id="sidebar" class="sidebar">
+            <button id="close-btn" class="close-btn">&times;</button>
+            <img src="imglogineusuario/senaibranco.svg" alt="" />
+            <h3>Menu</h3>
+            <ul>
+
+
+                <li class="home">
+                    <a href="telaInicial.html" id="home">
+                        <div class="home"></div>
+                        <span>Home</span>
+                    </a>
+                </li>
+
+
+                <li class="cadastrar">
+                    <a href="cadastro1.html" id="cadas">
+                        <div class="box-of-good-good"></div>
+                        <span>Cadastrar</span>
+                    </a>
+                </li>
+
+
+                <li class="edicao">
+                    <a href="edicao.html" id="edicao">
+                        <div class="pencil"></div>
+                        <span>Edição</span>
+                    </a>
+                </li>
+
+
+                <li class="estoque-item">
+                    <a href="#" id="esto" class="estoque-link">
+                        <div class="boxes-of-good-good"></div>
+                        <span>Estoque</span>
+                    </a>
+                    <ul id="estoque-submenu" class="submenu">
+                        <li><a href="catalogo.html">Catálogo</a></li>
+                        <li><a href="estoque_real.html">Estoque Real e Inventário</a></li>
+                        <li><a href="layout.html">Layout do Estoque</a></li>
+                    </ul>
+                </li>
+
+
+                <li class="financeiro">
+                    <a href="financeiro.html" id="finan">
+                        <div class="financial"></div>
+                        <span>Financeiro</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="container-logos">
+                <h4>SGA - Sistema de Gerenciamento de Armazém</h4>
+                <img src="imagens/logo-emp.svg" id="logo-gato" alt="" /><img src="imagens/logo-soft.svg"
+                    id="logo-cubo" />
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------------------------------------------------------------------------------------------------->
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="popup-edicao">
+        <div class="conteudo">
+            <div class="titulo-edicao">Edição</div>
+            <!-- /* ---------------------------------------------------------------------------------------- */ -->
+            <div class="secao1">
+                
+                <div class="foto">
+                    Foto do produto:
+                    <input type="file" id="foto" accept="image/*">
+                    <img id="preview-foto" src="">
+                </div>  
+                <div class="informacoesbasicas">
+                    <div class="titulo-edicao">Informações Básicas</div>
+                    <div class="inputs1">
+                        <div class="nome_b">Nome Básico:<input type="text" class="input" id="nome_b"></div>
+                        <div class="nome_m">Nome Modificador:<input type="text" class="input" id="nome_m"></div>
+                        <div class="categorias">Categoria:<select class="input" id="categorias" multiple>
+                            
+                        </select></div>
+                        <div class="cod">Cód. Barras:<input type="number" class="input" id="cod" readonly></div>
+                        <div class="descricao">Descrição Técnica:<input type="text" class="input" id="descricao"></div>
+                        <div class="fabricante">Fabricante:<input type="text" class="input" id="fabricante"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /* ---------------------------------------------------------------------------------------- */ -->
+            <div class="secao2">
+                <div class="detalhesdoproduto">
+                    <div class="titulo-edicao">Detalhes do Produto</div>
+                    <div class="inputs2">
+                        <div class="observacao">Observação Adicional:<input type="text" class="input" id="observacao">
+                        </div>
+                        <div class="unidade">Unidade:<input type="text" class="input" id="unidade"></div>
+                        <div class="preco_v">Preço de Venda:<input type="number" class="input" id="preco_v"></div>
+                        <div class="fragilidade">
+                            Fragilidade:<br>
+                            <label>
+                                <input type="radio" name="fragilidade" id="fragilidade-sim" value="1"> Sim
+                            </label>
+                            <label>
+                                <input type="radio" name="fragilidade" id="fragilidade-nao" value="0"> Não
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="lote">
+                    <div class="titulo-edicao">Lote</div>
+                    <div class="inputs2">
+                        <div>
+                            <select name="lotes" id="select-lotes">
+                                <option value="">Selecione um lote</option>
+                            </select>
+                            <div class="date">
+                                Data de Validade:
+                                <input type="date" id="data-lote" disabled>
+                            </div>
+                            <label>
+                                <input type="checkbox" id="checkbox-validade" disabled>
+                                Indeterminada
+                            </label>    
+                            <div class="fornecedor">
+                                Fornecedor:
+                                <input type="text" id="fornecedor-lote" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /* ---------------------------------------------------------------------------------------- */ -->
+            <div class="secao3">
+                <div class="dadosfisicos">
+                    <div class="titulo-edicao">Dados Físicos:</div>
+                    <div class="inputs2">
+                        <div class="altura">Altura:<input type="number" class="input" id="altura"></div>
+                        <div class="largura">Largura:<input type="number" class="input" id="largura"></div>
+                        <div class="profundidade">Profundidade:<input type="number" class="input" id="profundidade">
+                        </div>
+                        <div class="peso">Peso:<input type="number" class="input" id="peso"></div>
+                    </div>
+                </div>
+                <div class="localizacao">
+                    <div class="titulo-edicao">Localização:</div>
+                    <div class="inputs3">
+                        <div class="rua">Rua:<input type="number" class="input" id="rua"></div>
+                        <div class="coluna">Coluna:<input type="number" class="input" id="coluna"></div>
+                        <div class="andar">Andar:<input type="number" class="input" id="andar"></div>
+                    </div>
+                </div>
+                
+            </div>
+            <button class="salvar_edicao">Salvar</button>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+
+    <div id="barradebusca">
+        <div id="filtrarcontainer">
+            <div class="div_pesquisa">
+                <button id="filtrar"><img src="imagens/filtro.svg" alt="Filtro" id="fil">Filtrar</button>
+            </div>
+            <div id="caixote">
+                <form id="formFiltrar">
+                    <div id="ajeitar">
+                        <div id="subajeitada">
+                            <span>Filtros</span>
+                            <div id="textinho" onclick="limparFiltros()">
+                                Limpar Filtros
+                            </div>
+                        </div>
+                        <div id="dropdown" class="dentrodropdown">
+                            <label for="categoria">Categoria:</label>
+                            <select id="categoria" name="categoria">
+                                <option value="">Selecione Categoria</option>
+                                <!-- Adicione as opções dinamicamente via JavaScript -->
+                            </select>
+                            <label for="fabricante-filtro">Fabricante:</label>
+                            <select id="fabricante-filtro" name="fabricante-filtro">
+                                <option value="">Selecione Fabricante</option>
+                                <!-- Adicione os fabricantes dinamicamente via JavaScript -->
+                            </select>
+                        </div>
+                        <!-- <div id="inputdata">
+                            <label>Data:</label>
+                            <div id="ajeitardata">
+                                <input type="date" id="dedata" name="dedata" class="datasize">
+                                à
+                                <input type="date" id="atedata" name="atedata" class="datasize">
+                            </div>
+                        </div> -->
+                        <div id="ordernaritem">
+                            <label>Ordenar Item:</label>
+                            <div id="ordenar">  
+                                <select id="ordenacao">
+                                    <option value="">Order Por:</option>
+                                    <option value="az">A - Z</option>
+                                    <option value="za">Z - A</option>
+                                    <option value="maisRecente">Mais Recente</option>
+                                    <option value="maisAntigo">Mais Antigo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="filtrarBtn">Filtrar</button>
+                </form>
+            </div>
+        </div>
+    
+  
+        <!-- acabou as mudanças -->
+        <form id="formPesquisa">
+            <div class="div_pesquisa">
+                <input type="text" id="codigo">
+                <button id="pesquisar">Pesquisar <img src="imagens/lupa.svg" alt="" id="pes"></button>
+            </div>
+        </form>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+
+    <div class="container">
+        <div class="content-table">
+            <table id="tabela-estoque">
+
+                <thead>
+                    <tr>
+                        <th>Código de Barras</th>
+                        <th>Nome Básico</th>
+                        <th>Nome Modificado</th>
+                        <th>Descrição Tecnica</th>
+                        <th>Fabricante</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+
+
+            </table>
+        </div>
+    </div>
+
+    <!-- ----------------------------------------------------------------------------------------------------------------------------- -->
+
+    <!-- Pop-up de Senha -->
+
+    <div id="senha-popup" class="popup">
+        <div class="popup-content">
+            <div class="titulo">Digite a senha do Professor para a exclusão:</div>
+            <input type="password" id="senha-input" placeholder="Senha">
+            <div class="posicaobotao">
+                <button id="senha-cancelar" onclick="cancelarSenha()">Cancelar</button>
+                <button id="senha-confirmar" onclick="verificarSenha()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="final"><img src="imagens/logo(escura).svg" id="logo">©DEVS-SENAI-SP - 2024</div>
+
+
+</body>
+
+<script>
+    // <!-- -------------------------------------HAMBURGUER----------------------------------------------------------- -->
+
+    document.addEventListener('DOMContentLoaded', function () {
+
+        const estoqueItem = document.querySelector('.estoque-item');
+        const estoqueSubMenu = document.getElementById('estoque-submenu');
+        const estoqueLink = document.getElementById('esto');
+        const iconeEstoque = estoqueLink.querySelector('.boxes-of-good-good');
+
+        const submenuLinks = estoqueSubMenu.querySelectorAll('a');
+        submenuLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+        });
+
+        estoqueItem.addEventListener('click', function (event) {
+            event.preventDefault();
+
+            estoqueItem.classList.toggle('active');
+            if (estoqueItem.classList.contains('active')) {
+                estoqueSubMenu.style.display = "block";
+                estoqueItem.style.backgroundColor = "#000";
+                estoqueLink.style.color = "#319DF6";
+                iconeEstoque.style.backgroundImage = "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23319df6' d='M10 4v11h12V4zm2 2h2v4l2-2l2 2V6h2v7h-8zM3 17v11h12V17zm14 0v11h12V17zM5 19h2v4l2-2l2 2v-4h2v7H5zm14 0h2v4l2-2l2 2v-4h2v7h-8z'/%3E%3C/svg%3E\")";
+            } else {
+                estoqueSubMenu.style.display = "none";
+                estoqueItem.style.backgroundColor = "";
+                estoqueLink.style.color = "";
+                iconeEstoque.style.backgroundImage = "";
+            }
+        });
+
+        // Fecha o dropdown ao clicar fora
+        document.addEventListener('click', function (event) {
+            if (!estoqueItem.contains(event.target)) {
+                estoqueItem.classList.remove('active');
+                estoqueSubMenu.style.display = "none";
+                estoqueItem.style.backgroundColor = "";
+                estoqueLink.style.color = "";
+                iconeEstoque.style.backgroundImage = "";
+            }
+        });
+
+
+    });
+
+    document.getElementById('formPesquisa').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const termo = document.getElementById('codigo').value.trim().toLowerCase();
+
+        const filtrados = produtos.filter(p =>
+            String(p.codigo).includes(termo) ||
+            (p.nome_basico && p.nome_basico.toLowerCase().includes(termo))
+        );
+
+        montarTabela(filtrados);
+    });
+</script>
+
+<script src="js/edicao.js"></script>
+<script src="js/navbar.js"></script>
+
+
+
+</html>

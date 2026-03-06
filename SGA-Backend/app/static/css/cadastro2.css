@@ -1,0 +1,425 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+        
+        font-family: "Inter", serif;
+    
+}
+
+body {
+    background-color: #F0F0F0;
+    height: 100vh;
+}
+
+button{
+    cursor: pointer;
+}
+
+/* CABEÇALHO */
+.texto-nav{
+    color: #0B6300;
+}
+
+.sidebar ul li #cadas {
+    color: #50CD58;
+
+    & .box-of-good-good {
+        display: inline-block;
+        width: 1.3em;
+        height: 1.3em;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%2350cd58' d='m17.578 4.432l-2-1.05C13.822 2.461 12.944 2 12 2s-1.822.46-3.578 1.382l-.321.169l8.923 5.099l4.016-2.01c-.646-.732-1.688-1.279-3.462-2.21m4.17 3.534l-3.998 2V13a.75.75 0 0 1-1.5 0v-2.286l-3.5 1.75v9.44c.718-.179 1.535-.607 2.828-1.286l2-1.05c2.151-1.129 3.227-1.693 3.825-2.708c.597-1.014.597-2.277.597-4.8v-.117c0-1.893 0-3.076-.252-3.978M11.25 21.904v-9.44l-8.998-4.5C2 8.866 2 10.05 2 11.941v.117c0 2.525 0 3.788.597 4.802c.598 1.015 1.674 1.58 3.825 2.709l2 1.049c1.293.679 2.11 1.107 2.828 1.286M2.96 6.641l9.04 4.52l3.411-1.705l-8.886-5.078l-.103.054c-1.773.93-2.816 1.477-3.462 2.21'/%3E%3C/svg%3E");
+    }
+}
+
+.cadastrar{
+    background-color: #000;
+}
+
+/* CADASTRO */
+section.cadastro {
+    padding: 0vh 4%;
+}
+
+.flex {
+    display: flex;
+}
+
+section.cadastro .flex {
+    align-items: center;
+    justify-content: center;
+    /* justify-content: space-between; */
+    gap: 10vh;
+}
+
+section.cadastro .flex .parte-bolinhas .container {
+    margin-top: 5vh;
+}
+
+.parte-bolinhas .container {
+    width: 50vh;
+    height: 48vh;
+
+    background-color: white;
+    padding: 1.5vh 0;
+    box-shadow: 0.4vh 0.4vh 0.5vh #c4c4c4;
+}
+
+.parte-bolinhas .container .bolinha1 {
+    width: 7.4vh;
+    height: 7.4vh;
+    border-radius: 100%;
+    background-color: #429038;
+    box-shadow: 0px 0.5vh 0.8vh #7b7b7b;
+    margin: 0 4.6%;
+}
+
+.parte-bolinhas .container .palitinho1 {
+    width: 0.3vh;
+    height: 1.8vh;
+    background-color: #216D17;
+    margin: 0 11.5%;
+}
+
+.parte-bolinhas .container .bolinha2 {
+    width: 7.4vh;
+    height: 7.4vh;
+    border-radius: 100%;
+    background-color: #429038;
+    box-shadow: 0px 0.5vh 0.8vh #7b7b7b;
+    margin: 0 4.6%;
+}
+
+.parte-bolinhas .container .palitinho2 {
+    width: 0.3vh;
+    height: 1.8vh;
+    background-color: #B8B8B8;
+    margin: 0 11.5%;
+}
+
+.parte-bolinhas .container .bolinha3 {
+    width: 7.4vh;
+    height: 7.4vh;
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 0px 0.5vh 0.8vh #7b7b7b;
+    margin: 0 4.6%;
+}
+
+.parte-bolinhas .container .palitinho3 {
+    width: 0.3vh;
+    height: 1.8vh;
+    background-color: #B8B8B8;
+    margin: 0 11.5%;
+}
+
+.parte-bolinhas .container .bolinha4 {
+    width: 7.4vh;
+    height: 7.4vh;
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 0px 0.5vh 0.8vh #7b7b7b;
+    margin: 0 4.6%;
+}
+
+.parte-bolinhas .container .palitinho4 {
+    width: 0.3vh;
+    height: 1.8vh;
+    background-color: #B8B8B8;
+    margin: 0 11.5%;
+}
+
+.parte-bolinhas .container .bolinha5 {
+    width: 7.4vh;
+    height: 7.4vh;
+    border-radius: 100%;
+    background-color: white;
+    box-shadow: 0px 0.5vh 0.8vh #7b7b7b;
+    margin: 0 4.6%;
+}
+
+.parte-bolinhas .container ul {
+    font-family: "Inter", serif;
+    list-style-type: none;
+    margin-top: 13%;
+}
+
+.parte-bolinhas ul li {
+    padding: 0 10vh;
+    font-size: 2.4vh;
+    margin-top: -24%;
+    padding: 0 23%;
+}
+
+.parte-bolinhas .caixa-aberta {
+    margin: 2% 14%;
+}
+
+.caixa-aberta img{
+    height: auto;
+    width: 100%;
+}
+
+/* DIREITA */
+.inserir-info .container {
+    width: 118vh;
+    height: 74vh;
+    background-color: white;
+    box-shadow: 0.4vh 0.4vh 0.5vh #c4c4c4;
+    padding: 5vh 0;
+}
+
+.inserir-info .container .porcentagem-linha {
+    width: 103vh;
+    height: 0.6vh;
+    background-color: #B8B8B8;
+    margin: 0 6%;
+}
+
+.inserir-info .container .porcentagem-linha .linha-verde {
+    width: 44vh;
+    height: 0.6vh;
+    background: linear-gradient(90deg, rgba(13, 113, 0, 1) 30%, rgba(111, 239, 119, 1) 100%);
+    box-shadow: 0 0 0.2vh #429038;
+}
+
+.inserir-info .container p {
+    display: flex;
+    justify-content: end;
+    font-family: "Inter", serif;
+    padding: 0 1.5%;
+    margin-top: -1.4vh;
+    color: #545454;
+    font-size: 2vh;
+}
+
+.inserir-info .container .divisoria {
+    width: 118vh;
+    height: 0.1vh;
+    background-color: #B8B8B8;
+    margin-top: 4vh;
+}
+
+/* INFORMAÇÕES BÁSICAS */
+.inserir-info .container .InformacoesdeEntrada h1 {
+    font-family: "Inter", serif;
+    font-weight: 400;
+    font-size: 3.5vh;
+    padding: 2% 6%;
+}
+
+.inserir-info .container .caixaTexto{
+    margin-bottom: 2%; 
+    padding: 0 6%;
+}
+
+#fabricante,
+#unidade,
+#precoVenda,
+.inserir-info .container textarea {
+    width: 100%;
+    padding: 2.3%;
+    border: 0.1vh solid #ccc;
+    border-radius: 0.4vh;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+    font-size: 2.2vh;
+    box-shadow: 0.4vh 0.4vh 0.4vh #c4c4c4;
+}
+
+#estoque{
+    width: 50%;
+    padding: 2.3%;
+    border: 0.1vh solid #ccc;
+    border-radius: 0.4vh;
+    box-sizing: border-box;
+    font-family: "Inter", serif;
+    font-size: 2.2vh;
+    box-shadow: 0.4vh 0.4vh 0.4vh #c4c4c4;
+}
+
+ #fragil{
+    font-family: "Inter", serif;
+    font-size: 2.2vh;
+    margin-top: -2vh;
+}
+
+.opcao{
+    font-family: "Inter", serif;
+    font-size: 2.2vh;
+    padding: 0 2%;
+    display: inline-block;
+    margin-left: 4.5vh;
+}
+
+.setas{
+    display: flex;
+    justify-content: center;
+    margin-top: 0vh;
+}
+
+.inserir-info .container button img{
+    height: auto;
+    width: 15vh;
+}
+
+.inserir-info .setas button {
+    background-color: transparent;
+    border: none;
+}
+
+.inserir-info .setas button:hover{
+    transform: scale(1.05);
+}
+
+.footer{
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+}
+
+.footer img{
+    height: auto;
+    width: 35vh;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* PARA TABLET Vertical */
+@media (max-width: 1199px){
+    /* CADASTRO */
+    section.cadastro .flex {
+        flex-direction: column;
+        align-items: center;
+        gap: 10vh;
+    }
+    .parte-bolinhas .container {
+        width: 65vw;
+        height: 27vh;
+    }
+    .parte-bolinhas .container .bolinha1 {
+        width: 4vh;
+        height: 4vh;
+    }
+    .parte-bolinhas .container .palitinho1 {
+        height: 1vh;
+        margin: 0 9%;
+    }
+    .parte-bolinhas .container .bolinha2 {
+        width: 4vh;
+        height: 4vh;
+    }
+    .parte-bolinhas .container .palitinho2 {
+        height: 1vh;
+        margin: 0 9%;
+    }
+    .parte-bolinhas .container .bolinha3 {
+        width: 4vh;
+        height: 4vh;
+    }
+    .parte-bolinhas .container .palitinho3 {
+        height: 1vh;
+        margin: 0 9%;
+    }
+    .parte-bolinhas .container .bolinha4 {
+        width: 4vh;
+        height: 4vh;
+    }
+    .parte-bolinhas .container .palitinho4 {
+        height: 1vh;
+        margin: 0 9%;
+    }
+    .parte-bolinhas .container .bolinha5 {
+        width: 4vh;
+        height: 4vh;
+    }
+    .parte-bolinhas .container ul {
+        margin-top: -69%;
+        margin-left: 3%;
+    }
+    .parte-bolinhas ul li {
+        font-size: 2.5vh;
+        margin-top: -24%;
+        padding: 14.5%;
+    }
+    .parte-bolinhas .caixa-aberta {
+        margin-top: -20%;
+        margin-left: 70%;
+    }
+    .caixa-aberta img {
+        height: auto;
+        width: 150%;
+    }
+    /* DIREITA */
+    .inserir-info .container {
+        width: 90vw;
+        height: 51vh;
+        margin-left: 3%;
+        margin-top: -10%;
+    }
+    .inserir-info .container .porcentagem-linha {
+        width: 75vw;
+    }
+    .inserir-info .container .porcentagem-linha .linha-verde {
+        width: 30vw;
+    }
+    .inserir-info .container .divisoria {
+        width: 90vw;
+    }
+    /* INFORMAÇÕES BÁSICAS */
+    .setas {
+        margin-top: -3vh;
+    }
+    .footer {
+        margin-top: 30px;
+    }
+}
+
+/* ---------------------------------------------------------------------------- */
+/* PARA CELULAR */
+@media (max-width: 425px){
+    /* CADASTRO */
+    .parte-bolinhas .container {
+        margin-left: 5%;
+        width: 85vw;
+    }
+    .parte-bolinhas .container ul {
+        margin-top: -78%;
+        margin-left: 5%;
+    }
+    .parte-bolinhas ul li {
+        font-size: 2.2vh;
+    }
+    .parte-bolinhas .caixa-aberta {
+        margin-left: 65%;
+    }
+    .caixa-aberta img {
+        width: 100%;
+    }
+    /* DIREITA */
+    .inserir-info .container {
+        height: 48vh;
+        margin-top: -20%;
+    }
+    .inserir-info .container .porcentagem-linha {
+        width: 70vw;
+    }
+    .inserir-info .container .porcentagem-linha .linha-verde {
+        width: 28vw;
+    }
+    .inserir-info .container .InformacoesdeEntrada h1 {
+        font-size: 3vh;
+    }
+    #fragil {
+        margin-top: 1vh;
+    }
+    /* INFORMAÇÕES BÁSICAS */
+    .setas {
+        margin-top: -3vh;
+    }
+    .footer {
+        margin-top: 0px;
+    }
+}

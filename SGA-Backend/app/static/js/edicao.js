@@ -391,7 +391,8 @@ function excluirProduto(codigo) {
 function verificarSenha() {
     const senha = document.getElementById('senha-input').value;
 
-    if (senha !== 'professor123') {
+    const professorEmail = "admin@professor.com";
+    if (senha !== 'admin123') {
         alert('Senha incorreta!');
         return;
     }

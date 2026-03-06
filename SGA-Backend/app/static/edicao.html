@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
         rel="stylesheet">
+    <script src="/js/config.js"></script>
     <title>Edição</title>
 </head>
 
@@ -28,7 +29,7 @@
         <!--------------------------------HAMBURGUER------------------------------------------------------------------------------------>
         <div id="sidebar" class="sidebar">
             <button id="close-btn" class="close-btn">&times;</button>
-            <img src="imglogineusuario/senaibranco.svg" alt="" />
+            <img src="/imglogineusuario/senaibranco.svg" alt="" />
             <h3>Menu</h3>
             <ul>
 
@@ -80,7 +81,7 @@
 
             <div class="container-logos">
                 <h4>SGA - Sistema de Gerenciamento de Armazém</h4>
-                <img src="imagens/logo-emp.svg" id="logo-gato" alt="" /><img src="imagens/logo-soft.svg"
+                <img src="/imagens/logo-emp.svg" id="logo-gato" alt="" /><img src="/imagens/logo-soft.svg"
                     id="logo-cubo" />
             </div>
         </div>
@@ -94,20 +95,20 @@
             <div class="titulo-edicao">Edição</div>
             <!-- /* ---------------------------------------------------------------------------------------- */ -->
             <div class="secao1">
-                
+
                 <div class="foto">
                     Foto do produto:
                     <input type="file" id="foto" accept="image/*">
                     <img id="preview-foto" src="">
-                </div>  
+                </div>
                 <div class="informacoesbasicas">
                     <div class="titulo-edicao">Informações Básicas</div>
                     <div class="inputs1">
                         <div class="nome_b">Nome Básico:<input type="text" class="input" id="nome_b"></div>
                         <div class="nome_m">Nome Modificador:<input type="text" class="input" id="nome_m"></div>
                         <div class="categorias">Categoria:<select class="input" id="categorias" multiple>
-                            
-                        </select></div>
+
+                            </select></div>
                         <div class="cod">Cód. Barras:<input type="number" class="input" id="cod" readonly></div>
                         <div class="descricao">Descrição Técnica:<input type="text" class="input" id="descricao"></div>
                         <div class="fabricante">Fabricante:<input type="text" class="input" id="fabricante"></div>
@@ -148,7 +149,7 @@
                             <label>
                                 <input type="checkbox" id="checkbox-validade" disabled>
                                 Indeterminada
-                            </label>    
+                            </label>
                             <div class="fornecedor">
                                 Fornecedor:
                                 <input type="text" id="fornecedor-lote" disabled>
@@ -178,7 +179,7 @@
                         <div class="andar">Andar:<input type="number" class="input" id="andar"></div>
                     </div>
                 </div>
-                
+
             </div>
             <button class="salvar_edicao">Salvar</button>
         </div>
@@ -222,7 +223,7 @@
                         </div> -->
                         <div id="ordernaritem">
                             <label>Ordenar Item:</label>
-                            <div id="ordenar">  
+                            <div id="ordenar">
                                 <select id="ordenacao">
                                     <option value="">Order Por:</option>
                                     <option value="az">A - Z</option>
@@ -237,8 +238,8 @@
                 </form>
             </div>
         </div>
-    
-  
+
+
         <!-- acabou as mudanças -->
         <form id="formPesquisa">
             <div class="div_pesquisa">
@@ -287,7 +288,7 @@
         </div>
     </div>
 
-    <div class="final"><img src="imagens/logo(escura).svg" id="logo">©DEVS-SENAI-SP - 2024</div>
+    <div class="final"><img src="/imagens/logo(escura).svg" id="logo">©DEVS-SENAI-SP - 2024</div>
 
 
 </body>

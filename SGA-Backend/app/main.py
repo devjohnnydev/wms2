@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from app.core.database import engine, Base
+from sqlalchemy import text
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from app.routers import produtos, edicao, estoque, chart, auth, recebimentos, saidas, saldos
@@ -29,6 +30,18 @@ app.include_router(chart.router, prefix="/api")
 async def startup():
     # Cria as tabelas automaticamente se não existirem
     async with engine.begin() as conn:
+        # Alterar colunas para BIGINT se necessário (correção de esquema legado)
+        try:
+            await conn.execute(text("ALTER TABLE dimproduto ALTER COLUMN codigo TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE factrecebimento ALTER COLUMN codigo TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE factsaidas ALTER COLUMN codigo TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE factcategoria ALTER COLUMN codigo TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE factcategoria ALTER COLUMN idcategoria TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE dimcategoria ALTER COLUMN idcategoria TYPE BIGINT"))
+            await conn.execute(text("ALTER TABLE factcategoria ALTER COLUMN idcategoriaproduto TYPE BIGINT"))
+        except Exception as e:
+            print(f"Nota: Fallback de alteração de coluna (provavelmente já alterado): {e}")
+        
         await conn.run_sync(Base.metadata.create_all)
     
     # Popula dados iniciais (Admin e categorias)

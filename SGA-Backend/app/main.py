@@ -36,4 +36,9 @@ async def startup():
 
 # Servir Frontend (arquivos estáticos) na raiz
 # Isso deve vir por último para que as rotas de API tenham prioridade
-app.mount("/", StaticFiles(directory="app/static", html=True), name="static")
+static_dir = os.path.join(os.getcwd(), "app/static")
+if not os.path.exists(static_dir):
+    # Fallback caso esteja rodando da raiz do monorepo
+    static_dir = os.path.join(os.getcwd(), "SGA-Backend/app/static")
+
+app.mount("/", StaticFiles(directory=static_dir, html=True), name="static")
